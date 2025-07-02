@@ -21,7 +21,7 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('background.jpg');
+  background-image: url('https://github.com/AuTeacher/Website/blob/main/background.jpg');
   background-size: cover;
   background-position: center;
   filter: blur(8px);
