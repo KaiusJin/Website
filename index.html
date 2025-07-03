@@ -1,33 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Personal Website</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>右对齐导航栏（无阴影背景变化）</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #334EAC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .box {
+      width: 90%;
+      max-width: 2000px;
+      height: 90%;
+      background-color: white;
+      border-radius: 30px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .navbar {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: white;
+      gap: 20px;
+    }
+    .navbar::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: black;
+      bottom: 10px;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: black;
+      font-size: 1.1rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: transform 0.2s; /* 只对transform过渡 */
+    }
+    .navbar a:hover {
+      /* 取消背景变化 */
+      transform: translateY(-3px); /* 保留轻微上浮 */
+    }
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-  <!-- 第一模块 -->
-  <section class="section first-section">
-    <div class="background"></div>
-    <div class="content">
-      <h1>I AM KAIUS JIN</h1>
-      <p>Welcome to My Website</p>
-      <div class="down-arrow" id="scrollButton">&#x25BC;</div>
-    </div>
-  </section>
-
-  <!-- 第二模块 -->
-  <section class="section second-section" id="secondSection">
+  <div class="box">
     <nav class="navbar">
-      <button>Myself</button>
-      <button>DashBoard</button>
-      <button>Projects</button>
+      <a href="#">Home</a>
+      <a href="#">Myself</a>
+      <a href="#">Projects</a>
+      <a href="#">Experience</a>
+      <a href="#">Awards</a>
+      <a href="#">Contact Me</a>
     </nav>
-    <div class="second-content">
-      <h2>test</h2>
+    <div class="content">
+      <!-- 页面主体内容区域 -->
     </div>
-  </section>
-
-  <script src="script.js"></script>
+  </div>
 </body>
 </html>
