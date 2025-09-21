@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>个人网站</title>
+  <title>Personal Website</title>
   <!-- Font Awesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -164,6 +164,20 @@
       color: #1E90FF;
       border-color: #1E90FF;
     }
+    /* 提示信息 */
+    .status-message {
+      margin-top: 10px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-success {
+      color: #32CD32; /* limegreen */
+    }
+    .status-error {
+      color: #FF6347; /* tomato red */
+    }
   </style>
 </head>
 <body>
@@ -178,21 +192,21 @@
     <!-- 页面内容 -->
     <div class="content">
       <section id="about" class="active">
-        <h1>欢迎来到我的个人网站</h1>
+        <h1>Welcome to My Personal Website</h1>
         <p>
-          我是滑铁卢大学计算机科学专业的学生，热爱算法与项目开发。  
+          I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>这是第 7 次修改</strong>
+          <strong>This is modification #8</strong>
         </p>
       </section>
 
       <section id="project">
-        <h2>项目展示</h2>
-        <p>这里可以放你的项目列表，比如在线考试系统、个人网站、RateMyProfessor 应用等。</p>
+        <h2>Projects</h2>
+        <p>You can showcase your projects here, such as Online Exam System, Personal Website, and RateMyProfessor clone.</p>
       </section>
 
       <section id="contact">
-        <h2>联系方式</h2>
+        <h2>Contact</h2>
         <div class="contact-container">
           <!-- 左侧联系方式 -->
           <div class="contact-left">
@@ -218,16 +232,17 @@
           <!-- 右侧 EmailJS 表单 -->
           <div class="contact-right">
             <form id="contact-form">
-              <label>姓名</label>
+              <label>Name</label>
               <input type="text" name="from_name" required>
 
-              <label>邮箱</label>
+              <label>Email</label>
               <input type="email" name="from_email" required>
 
-              <label>留言</label>
+              <label>Message</label>
               <textarea name="message" rows="6" required></textarea>
 
-              <button type="submit">发送</button>
+              <button type="submit">Send</button>
+              <div id="status-message"></div>
             </form>
           </div>
         </div>
@@ -253,13 +268,14 @@
     // EmailJS 表单提交逻辑
     document.getElementById('contact-form').addEventListener('submit', function(event) {
       event.preventDefault();
+      const statusEl = document.getElementById('status-message');
 
       emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', this)
         .then(function() {
-          alert('消息已发送！我会尽快回复你。');
-          document.getElementById('contact-form').reset(); // 发送成功后清空表单
+          statusEl.innerHTML = '<span class="status-message status-success"><i class="fas fa-check-circle"></i> Message sent successfully</span>';
+          document.getElementById('contact-form').reset();
         }, function(error) {
-          alert('发送失败，请稍后重试。');
+          statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-times-circle"></i> Failed to send message</span>';
           console.error('FAILED...', error);
         });
     });
