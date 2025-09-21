@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4Personal Website</title>
+  <title>5Personal Website</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -79,11 +79,14 @@
 
     /* -------- Projects Timeline -------- */
     #project {
-      padding: 20px;
-      overflow-y: auto;   /* 内部垂直滚动 */
-      overflow-x: hidden; /* 禁止横向滚动 */
-      box-sizing: border-box;
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding-right: 15px;     /* ✅ 给右边留出空间 */
     }
+
     .timeline-container {
       display: flex;
       flex-direction: column;
