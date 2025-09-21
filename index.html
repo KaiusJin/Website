@@ -23,6 +23,61 @@
       font-family: sans-serif;
       color: #fff;
     }
+    /* -------- Awards Section -------- */
+#awards {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  max-height: 70vh;       /* 保持和项目一样可滚动 */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  /* 奖项之间的间距 */
+}
+
+.award-item {
+  background: rgba(255, 255, 255, 0.05); /* 半透明毛玻璃 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  position: relative;
+}
+
+.award-item::before {
+  content: "\f559";  /* 奖杯图标 (FontAwesome fa-trophy-alt) */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: #FFD700;   /* 金色 */
+  font-size: 22px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0.8;
+}
+
+.award-item h3 {
+  margin: 0 0 10px 0;
+  color: #1E90FF;
+  font-size: 20px;
+}
+
+.award-item p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.award-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+}
+
     .glass {
       margin: 20px;
       padding: 20px;
