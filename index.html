@@ -130,33 +130,33 @@
     .timeline-container {
       display: flex;
       gap: 40px;
+      align-items: flex-start;
     }
     .timeline {
       position: relative;
-      flex: 1;
+      flex: 0 0 140px; /* 固定宽度，避免贴边 */
+      margin-left: 20px; /* 往右移 */
       border-left: 2px solid #fff;
       padding-left: 20px;
     }
     .timeline-year {
-      margin-bottom: 40px;
-    }
-    .timeline-year::before {
-      content: "";
-      position: absolute;
-      left: -29px;
-      width: 14px;
-      height: 14px;
-      background-color: #fff;
-      border-radius: 50%;
-      border: 2px solid #1E1E1E;
+      margin-bottom: 60px;
+      display: flex;
+      align-items: flex-start; /* 和右侧卡片顶部对齐 */
     }
     .timeline-year h3 {
       margin: 0;
       font-size: 20px;
       color: #fff;
     }
+    .timeline-year p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+
     .project-details {
-      flex: 2;
+      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -165,7 +165,7 @@
       border: 1px solid #fff;
       border-radius: 10px;
       padding: 20px;
-      background-color: #1E1E1E;
+      background: none;   /* ✅ 移除背景色 */
     }
     .project-card h2 {
       margin-top: 0;
@@ -178,6 +178,14 @@
       .contact-container,
       .timeline-container {
         flex-direction: column;
+      }
+      .timeline {
+        flex: none;
+        margin-left: 0;
+        border-left: none;
+        border-top: 2px solid #fff;
+        padding-left: 0;
+        padding-top: 20px;
       }
     }
   </style>
@@ -196,7 +204,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #20</strong>
+          <strong>This is modification #21</strong>
         </p>
       </section>
 
@@ -204,18 +212,9 @@
         <h2>Projects</h2>
         <div class="timeline-container">
           <div class="timeline">
-            <div class="timeline-year">
-              <h3>2026</h3>
-              <p>Project C</p>
-            </div>
-            <div class="timeline-year">
-              <h3>2025</h3>
-              <p>AI and ML with Python</p>
-            </div>
-            <div class="timeline-year">
-              <h3>2024</h3>
-              <p>Project A</p>
-            </div>
+            <div class="timeline-year"><h3>2026</h3></div>
+            <div class="timeline-year"><h3>2025</h3></div>
+            <div class="timeline-year"><h3>2024</h3></div>
           </div>
           <div class="project-details">
             <div class="project-card">
