@@ -1,255 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Website</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-    (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl");
-    })();
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaius Jin Portfolio</title>
   <style>
     body {
       margin: 0;
-      min-height: 100vh;
-      background-color: #1E1E1E;
+      font-family: Arial, sans-serif;
+      background-color: #222;
+      color: white;
+    }
+
+    nav {
+      text-align: center;
+      padding: 15px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+    }
+
+    nav a.active {
+      color: dodgerblue;
+    }
+
+    .container {
+      margin: 20px auto;
+      max-width: 1200px;
+      padding: 20px;
+      background: rgba(50, 50, 50, 0.8);
+      border-radius: 15px;
+    }
+
+    /* Contact 模块 */
+    .contact-wrapper {
+      display: flex;
+      gap: 40px;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-info ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-info li {
+      margin: 15px 0;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-family: sans-serif;
-      color: #fff;
+      gap: 10px;
     }
-    .glass {
-      margin: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 35px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      flex-direction: column;
-      width: calc(100% - 40px);
-      max-width: 1200px;
-      min-height: 90vh;
-      box-sizing: border-box;
-      overflow: hidden;
+
+    .contact-form {
+      flex: 2;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      padding: 15px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid white;
+      border-radius: 5px;
+      color: white;
     }
-    nav a {
-      margin: 0 20px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      font-size: 18px;
+
+    .contact-form button {
+      padding: 10px 20px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      border-radius: 5px;
       cursor: pointer;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #1E90FF;
-    }
-    nav a.active {
-      color: #1E90FF;
-    }
-    .content {
-      flex: 1;
-      padding: 20px;
-      text-align: left;
-      overflow-y: auto;
-    }
-    section {
-      display: none;
-      min-height: 100%;
-    }
-    section.active {
-      display: block;
     }
 
-    /* 📌 Projects Timeline */
-    .timeline-container {
-      display: flex;
-      flex-direction: column;
+    /* Project 模块 */
+    .timeline {
       position: relative;
-      margin-left: 60px;
+      padding-left: 80px;
+      border-left: 2px solid white;
+      margin-left: 50px;
     }
-    .timeline-line {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #fff;
-    }
-    .timeline-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 60px;
-      position: relative;
-    }
-    .timeline-dot {
-      position: absolute;
-      left: -8px;
-      width: 16px;
-      height: 16px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.3s;
-    }
+
     .timeline-year {
-      margin-left: 30px;
-      margin-right: 30px;
-      font-size: 20px;
-      min-width: 60px;
+      position: absolute;
+      left: -70px;
+      font-weight: bold;
     }
-    .project-card {
-      border: 1px solid #fff;
-      border-radius: 10px;
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -90px;
+      top: 20px;
+      width: 14px;
+      height: 14px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .timeline-content {
+      margin-left: 20px;
       padding: 20px;
-      background: none;
-      flex: 1;
-      transition: transform 0.3s;
+      border: 1px solid white;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
     }
-    .project-card h2 {
+
+    .timeline-content h3 {
+      color: dodgerblue;
       margin-top: 0;
-      color: #1E90FF;
-    }
-    .project-card ul {
-      margin: 10px 0 0 20px;
     }
 
-    /* Hover 联动效果 */
-    .timeline-item:hover .timeline-dot {
-      transform: translateX(8px);
-    }
-    .timeline-item:hover .project-card {
-      transform: translateX(8px);
+    .timeline-item:hover::before {
+      transform: translateX(5px);
+      background: dodgerblue;
     }
 
-    @media (max-width: 768px) {
-      .timeline-container {
-        margin-left: 30px;
-      }
-      .timeline-year {
-        font-size: 16px;
-        margin-left: 20px;
-        margin-right: 20px;
-      }
+    .timeline-item:hover .timeline-content {
+      transform: translateX(5px);
     }
   </style>
 </head>
 <body>
-  <div class="glass">
-    <nav>
-      <a class="active" data-page="about">About Me</a>
-      <a data-page="project">Project</a>
-      <a data-page="contact">Contact</a>
-    </nav>
 
-    <div class="content">
-      <section id="about" class="active">
-        <h1>Welcome to My Personal Website</h1>
-        <p>
-          I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
-          <br>
-          <strong>This is modification #22</strong>
-        </p>
-      </section>
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#project" class="active">Project</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-      <section id="project">
-        <div class="timeline-container">
-          <div class="timeline-line"></div>
+  <!-- Project 模块 -->
+  <div class="container" id="project">
+    <div class="timeline">
 
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2025</div>
-            <div class="project-card">
-              <h2>AI and ML with Python</h2>
-              <p><strong>Jul 2024 - Aug 2024</strong></p>
-              <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
-              <ul>
-                <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
-                <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
-                <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
-                <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
-              </ul>
-              <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2024</div>
-            <div class="project-card">
-              <h2>Project A</h2>
-              <p>Details for Project A (2024) will go here.</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2026</div>
-            <div class="project-card">
-              <h2>Project C</h2>
-              <p>Details for Project C (2026) will go here.</p>
-            </div>
-          </div>
+      <!-- 2026 -->
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-content">
+          <h3>Project C</h3>
+          <p>Details for Project C (2026) will go here.</p>
         </div>
-      </section>
+      </div>
 
-      <section id="contact">
-        <div class="contact-container">
-          <div class="contact-left">
-            <h2>Contact</h2>
-            <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456-7890</span></div>
-            <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
-            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
-            <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
-            <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
-          </div>
-
-          <div class="contact-right">
-            <h2>Send Message</h2>
-            <form id="contact-form" novalidate>
-              <label>Name</label>
-              <input type="text" name="from_name" placeholder="Enter your name" required>
-
-              <label>Email</label>
-              <input type="text" name="from_email" placeholder="Enter your email" required>
-
-              <label>Message</label>
-              <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
-
-              <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
-
-              <button type="submit">Send</button>
-              <div id="status-message"></div>
-            </form>
-          </div>
+      <!-- 2025 -->
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-content">
+          <h3>Project B</h3>
+          <p>Details for Project B (2025) will go here.</p>
         </div>
-      </section>
+      </div>
+
+      <!-- 2024 - 两个项目 -->
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-content">
+          <h3>AI and ML with Python</h3>
+          <p><strong>Jul 2024 – Aug 2024</strong></p>
+          <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
+          <ul>
+            <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real–time weather updates.</li>
+            <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
+            <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
+            <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
+          </ul>
+          <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence (AI) · PyCharm</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year"></div> <!-- 空年份，避免重复 -->
+        <div class="timeline-content">
+          <h3>Project A</h3>
+          <p>Details for Project A (2024) will go here.</p>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-content">
+          <h3>Project D</h3>
+          <p>Details for Project D (2023) will go here.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <script>
-    const navLinks = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('section');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.forEach(l => l.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        link.classList.add('active');
-        document.getElementById(link.dataset.page).classList.add('active');
-      });
-    });
-  </script>
+  <!-- Contact 模块 -->
+  <div class="container" id="contact">
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h2>Contact</h2>
+        <ul>
+          <li>📞 +1 (123) 456–7890</li>
+          <li>📧 <a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></li>
+          <li>🔗 <a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></li>
+          <li>💻 <a href="https://github.com/KaiusJin" target="_blank">GitHub</a></li>
+          <li>📄 <a href="CV.pdf" download>Download CV</a></li>
+        </ul>
+      </div>
+      <div class="contact-form">
+        <h2>Send Message</h2>
+        <form>
+          <input type="text" placeholder="Name" required>
+          <input type="email" placeholder="Email" required>
+          <textarea rows="5" placeholder="Message"></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
