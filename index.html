@@ -124,12 +124,13 @@
       border: 1px solid #fff;
       border-radius: 6px;
       font-size: 16px;
-      background-color: rgba(30, 30, 30, 0.8); /* 深灰透明背景 */
+      background-color: rgba(30, 30, 30, 0.8);
       color: #fff;
+      width: 100%;
     }
     .contact-right input::placeholder,
     .contact-right textarea::placeholder {
-      color: rgba(255,255,255,0.6); /* 半透明白色 */
+      color: rgba(255,255,255,0.6);
     }
     .contact-right button {
       padding: 10px;
@@ -165,6 +166,23 @@
       padding: 6px 10px;
       border-radius: 6px;
     }
+
+    /* 📱 响应式布局 */
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+      }
+      .contact-right {
+        justify-content: flex-start;
+      }
+      .contact-right form {
+        max-width: 100%;
+      }
+      nav a {
+        font-size: 14px;
+        margin: 0 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -181,7 +199,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #12</strong>
+          <strong>This is modification #13</strong>
         </p>
       </section>
 
