@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl"); // EmailJS Public Key
+      emailjs.init("Weh_j8K9Bgk4BrZFl");
     })();
   </script>
   <style>
@@ -74,98 +74,49 @@
       display: block;
     }
 
-    /* 📌 Contact */
-    .contact-container {
-      display: flex;
-      gap: 40px;
-    }
-    .contact-left {
-      flex: 1;
-    }
-    .contact-item {
-      margin: 15px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .contact-item a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .contact-item a:hover {
-      color: #1E90FF;
-    }
-    .contact-right {
-      flex: 2;
-    }
-    .contact-right form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .contact-right input,
-    .contact-right textarea {
-      background-color: #1E1E1E;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    .contact-right button {
-      background: none;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-    .contact-right button:hover {
-      background: #1E90FF;
-      color: #fff;
-    }
-
-    /* 📌 Projects */
+    /* 📌 Projects Timeline */
     .timeline-container {
       display: flex;
-      gap: 40px;
-      align-items: flex-start;
-    }
-    .timeline {
+      flex-direction: column;
       position: relative;
-      flex: 0 0 140px; /* 固定宽度，避免贴边 */
-      margin-left: 20px; /* 往右移 */
-      border-left: 2px solid #fff;
-      padding-left: 20px;
+      margin-left: 60px;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #fff;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 60px;
+      position: relative;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -8px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
     }
     .timeline-year {
-      margin-bottom: 60px;
-      display: flex;
-      align-items: flex-start; /* 和右侧卡片顶部对齐 */
-    }
-    .timeline-year h3 {
-      margin: 0;
+      margin-left: 30px;
+      margin-right: 30px;
       font-size: 20px;
-      color: #fff;
-    }
-    .timeline-year p {
-      margin: 5px 0 0 0;
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    .project-details {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      min-width: 60px;
     }
     .project-card {
       border: 1px solid #fff;
       border-radius: 10px;
       padding: 20px;
-      background: none;   /* ✅ 移除背景色 */
+      background: none;
+      flex: 1;
+      transition: transform 0.3s;
     }
     .project-card h2 {
       margin-top: 0;
@@ -174,18 +125,23 @@
     .project-card ul {
       margin: 10px 0 0 20px;
     }
+
+    /* Hover 联动效果 */
+    .timeline-item:hover .timeline-dot {
+      transform: translateX(8px);
+    }
+    .timeline-item:hover .project-card {
+      transform: translateX(8px);
+    }
+
     @media (max-width: 768px) {
-      .contact-container,
       .timeline-container {
-        flex-direction: column;
+        margin-left: 30px;
       }
-      .timeline {
-        flex: none;
-        margin-left: 0;
-        border-left: none;
-        border-top: 2px solid #fff;
-        padding-left: 0;
-        padding-top: 20px;
+      .timeline-year {
+        font-size: 16px;
+        margin-left: 20px;
+        margin-right: 20px;
       }
     }
   </style>
@@ -204,19 +160,17 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #21</strong>
+          <strong>This is modification #22</strong>
         </p>
       </section>
 
       <section id="project">
-        <h2>Projects</h2>
         <div class="timeline-container">
-          <div class="timeline">
-            <div class="timeline-year"><h3>2026</h3></div>
-            <div class="timeline-year"><h3>2025</h3></div>
-            <div class="timeline-year"><h3>2024</h3></div>
-          </div>
-          <div class="project-details">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2025</div>
             <div class="project-card">
               <h2>AI and ML with Python</h2>
               <p><strong>Jul 2024 - Aug 2024</strong></p>
@@ -229,10 +183,20 @@
               </ul>
               <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
             </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
             <div class="project-card">
               <h2>Project A</h2>
               <p>Details for Project A (2024) will go here.</p>
             </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2026</div>
             <div class="project-card">
               <h2>Project C</h2>
               <p>Details for Project C (2026) will go here.</p>
