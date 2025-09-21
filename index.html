@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl"); // 你的 Public Key
+      emailjs.init("Weh_j8K9Bgk4BrZFl"); // Public Key
     })();
   </script>
   <style>
@@ -182,7 +182,7 @@
         <p>
           我是滑铁卢大学计算机科学专业的学生，热爱算法与项目开发。  
           <br>
-          <strong>这是第 6 次修改</strong>
+          <strong>这是第 7 次修改</strong>
         </p>
       </section>
 
@@ -254,9 +254,10 @@
     document.getElementById('contact-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      emailjs.sendForm('service_o5dzskj', 'template_d8tjykx', this)
+      emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', this)
         .then(function() {
           alert('消息已发送！我会尽快回复你。');
+          document.getElementById('contact-form').reset(); // 发送成功后清空表单
         }, function(error) {
           alert('发送失败，请稍后重试。');
           console.error('FAILED...', error);
