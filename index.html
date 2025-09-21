@@ -140,12 +140,6 @@
       margin-top: 10px;
       font-size: 14px;
     }
-    #status-message.success {
-      color: #4CAF50; /* ✅ 绿色 */
-    }
-    #status-message.error {
-      color: #FF4C4C; /* ✅ 红色 */
-    }
 
     @media (max-width: 768px) {
       .contact-container {
@@ -168,12 +162,13 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #22 (fixed contact)</strong>
+          <strong>This is modification #17 style restored</strong>
         </p>
       </section>
 
       <section id="project">
-        <p>[Timeline 保持不变，这里省略]</p>
+        <h2>Projects</h2>
+        <p>这里放 timeline 内容...</p>
       </section>
 
       <section id="contact">
@@ -181,4 +176,63 @@
           <div class="contact-left">
             <h2>Contact</h2>
             <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456-7890</span></div>
-            <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">ka
+            <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
+            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
+            <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
+            <div class="contact-item"><i class="fas fa-file-alt"></i><a href="CV.pdf" download>Download CV</a></div>
+          </div>
+
+          <div class="contact-right">
+            <h2>Send Message</h2>
+            <form id="contact-form" novalidate>
+              <label>Name</label>
+              <input type="text" name="from_name" placeholder="Enter your name" required>
+              <label>Email</label>
+              <input type="email" name="from_email" placeholder="Enter your email" required>
+              <label>Message</label>
+              <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
+              <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
+              <button type="submit">Send</button>
+              <div id="status-message"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // ✅ 导航切换
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        link.classList.add('active');
+        document.getElementById(link.dataset.page).classList.add('active');
+      });
+    });
+
+    // ✅ EmailJS 表单发送 (回退到第17版提示样式)
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const statusMessage = document.getElementById("status-message");
+
+      if (grecaptcha.getResponse().length === 0) {
+        statusMessage.innerHTML = "⚠️ Please verify reCAPTCHA!";
+        return;
+      }
+
+      emailjs.sendForm("service_xxxxx", "template_xxxxx", this)
+        .then(() => {
+          statusMessage.innerHTML = "✅ Your message has been sent!";
+          this.reset();
+          grecaptcha.reset();
+        }, (error) => {
+          statusMessage.innerHTML = "❌ Failed to send message. Please try again.";
+        });
+    });
+  </script>
+</body>
+</html>
