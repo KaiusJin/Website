@@ -1,323 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2Personal Website</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    (function(){
+      emailjs.init("Weh_j8K9Bgk4BrZFl"); /* 你的 EmailJS Public Key */
+    })();
+  </script>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #1e1e1e;
+      min-height: 100vh;
+      background-color: #1E1E1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
       color: #fff;
     }
-
-    header {
+    .glass {
+      margin: 20px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 35px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 40px);
+      max-width: 1200px;
+      min-height: 90vh;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    nav {
       display: flex;
       justify-content: center;
-      background-color: #2c2c2c;
       padding: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
     }
-
-    header nav a {
+    nav a {
       margin: 0 20px;
       text-decoration: none;
       color: #fff;
       font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
     }
-
-    header nav a.active {
-      color: #007bff;
+    nav a:hover {
+      color: #1E90FF;
     }
-
+    nav a.active {
+      color: #1E90FF;
+    }
     .content {
+      flex: 1;
       padding: 20px;
+      text-align: left;
+      overflow: hidden;
     }
-
-    .content section {
+    section {
       display: none;
-      min-height: 100%;
-      padding-top: 20px;   /* ✅ 统一三个模块的顶部间距 */
+      height: 100%;
+      box-sizing: border-box;
     }
-
-    .content section.active {
+    section.active {
       display: block;
     }
 
-    /* 毛玻璃框样式 */
-    .glass {
-      background: rgba(40, 40, 40, 0.85);
+    /* -------- Projects Timeline -------- */
+    #project {
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
       padding: 20px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      height: 100%;
+      overflow-y: auto;   /* 内部垂直滚动 */
+      overflow-x: hidden; /* 禁止横向滚动 */
+      box-sizing: border-box;
     }
-
-    /* Timeline */
-    .timeline-wrapper {
-      flex: 1;
+    .timeline-container {
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
-      overflow-x: hidden;   /* ✅ 去掉横向滚动 */
-      padding: 0 20px;
-    }
-
-    .timeline {
       position: relative;
-      margin: 0 auto;
-      padding-left: 120px;
+      margin-left: 80px; /* 让年份不被遮挡 */
     }
-
-    .timeline::before {
-      content: '';
+    .timeline-line {
       position: absolute;
+      left: -40px;
       top: 0;
-      left: 80px;
+      bottom: 0;
       width: 2px;
-      height: 100%;
       background: #fff;
     }
-
     .timeline-item {
-      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 60px;
       position: relative;
     }
-
-    .timeline-item::before {
-      content: '';
+    .timeline-dot {
       position: absolute;
-      top: 0;
-      left: -42px;
-      width: 12px;
-      height: 12px;
+      left: -48px;
+      width: 16px;
+      height: 16px;
       background: #fff;
       border-radius: 50%;
+      transition: transform 0.3s;
     }
-
     .timeline-year {
       position: absolute;
-      left: -80px;
-      top: -5px;
+      left: -90px;
+      font-size: 20px;
       font-weight: bold;
-      font-size: 18px;
-      color: #fff;
     }
-
-    .timeline-content {
-      background: rgba(40, 40, 40, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+    .project-card {
+      border: 1px solid #fff;
       border-radius: 10px;
-      padding: 15px;
-      width: 90%;
+      padding: 20px;
+      background: none;
+      flex: 1;
+      transition: transform 0.3s;
     }
-
-    .timeline-content h3 {
+    .project-card h2 {
       margin-top: 0;
-      color: #007bff;
+      color: #1E90FF;
+    }
+    .project-card ul {
+      margin: 10px 0 0 20px;
     }
 
-    /* Contact */
+    .timeline-item:hover .timeline-dot {
+      transform: translateX(8px);
+    }
+    .timeline-item:hover .project-card {
+      transform: translateX(8px);
+    }
+
+    /* -------- Contact Section -------- */
+    #contact {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
     .contact-container {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
+      gap: 40px;
     }
-
-    .contact-info, .contact-form {
+    .contact-left, .contact-right {
       flex: 1;
-      margin: 10px;
     }
-
-    .contact-info a {
+    .contact-item {
+      margin: 12px 0;
       display: flex;
       align-items: center;
-      margin: 10px 0;
-      text-decoration: none;
+      gap: 10px;
+      transition: color 0.3s;
+    }
+    .contact-item i {
+      width: 20px;
+      transition: color 0.3s;
+    }
+    .contact-item a, .contact-item span {
       color: #fff;
-      transition: color 0.3s ease;
+      text-decoration: none;
+      transition: color 0.3s;
     }
-
-    .contact-info a i {
-      margin-right: 10px;
-      transition: color 0.3s ease;
+    .contact-item:hover a,
+    .contact-item:hover span,
+    .contact-item:hover i {
+      color: #1E90FF;
     }
-
-    /* ✅ 悬停时 icon 和文字一起变蓝 */
-    .contact-info a:hover, 
-    .contact-info a:hover i {
-      color: #007bff;
+    form {
+      display: flex;
+      flex-direction: column;
     }
-
-    .contact-form input, .contact-form textarea {
-      width: 100%;
+    form label {
+      margin: 8px 0 4px;
+    }
+    form input, form textarea {
       padding: 10px;
-      margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
+      margin-bottom: 12px;
+      background: transparent;
+      color: #fff;
     }
-
-    .contact-form button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      background-color: transparent;
+    form textarea {
+      resize: none;
+    }
+    button {
+      padding: 12px;
       border: 1px solid #fff;
+      background: transparent;
       color: #fff;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
+      font-size: 16px;
+      transition: background 0.3s, color 0.3s;
     }
-
-    /* ✅ 恢复 Send 按钮以前的样式 */
-    .contact-form button:hover {
-      background-color: #007bff;
+    button:hover {
+      background: #1E90FF;
       color: #fff;
     }
-
-    .status {
+    .success {
+      color: #4CAF50;
       margin-top: 10px;
-      font-size: 14px;
+    }
+    .error {
+      color: #f44336;
+      margin-top: 10px;
     }
 
-    .status.success {
-      color: #28a745;
+    /* 滚动条美化 */
+    #project::-webkit-scrollbar {
+      width: 8px;
     }
-
-    .status.error {
-      color: #dc3545;
+    #project::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.4);
+      border-radius: 4px;
+    }
+    #project::-webkit-scrollbar-track {
+      background: transparent;
     }
   </style>
 </head>
 <body>
-  <header>
+  <div class="glass">
     <nav>
-      <a href="#about" class="active">About Me</a>
-      <a href="#project">Project</a>
-      <a href="#contact">Contact</a>
+      <a class="active" data-page="about">About Me</a>
+      <a data-page="project">Project</a>
+      <a data-page="contact">Contact</a>
     </nav>
-  </header>
 
-  <div class="content">
-    <!-- About -->
-    <section id="about" class="active glass">
-      <h1>Welcome to My Personal Website</h1>
-      <p>I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.</p>
-    </section>
+    <div class="content">
+      <!-- About -->
+      <section id="about" class="active">
+        <h1>Welcome to My Personal Website</h1>
+        <p>
+          I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
+          <br>
+          <strong>This is the unified version</strong>
+        </p>
+      </section>
 
-    <!-- Project -->
-    <section id="project" class="glass">
-      <div class="timeline-wrapper">
-        <div class="timeline">
+      <!-- Projects -->
+      <section id="project">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
           <div class="timeline-item">
+            <div class="timeline-dot"></div>
             <div class="timeline-year">2026</div>
-            <div class="timeline-content">
-              <h3>Project C</h3>
+            <div class="project-card">
+              <h2>Project C</h2>
               <p>Details for Project C (2026) will go here.</p>
             </div>
           </div>
+
           <div class="timeline-item">
+            <div class="timeline-dot"></div>
             <div class="timeline-year">2025</div>
-            <div class="timeline-content">
-              <h3>Project B</h3>
+            <div class="project-card">
+              <h2>Project B</h2>
               <p>Details for Project B (2025) will go here.</p>
             </div>
           </div>
+
           <div class="timeline-item">
+            <div class="timeline-dot"></div>
             <div class="timeline-year">2024</div>
-            <div class="timeline-content">
-              <h3>AI and ML with Python</h3>
+            <div class="project-card">
+              <h2>AI and ML with Python</h2>
               <p><strong>Jul 2024 — Aug 2024</strong></p>
               <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
               <ul>
-                <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API.</li>
-                <li>Implemented asynchronous programming techniques.</li>
-                <li>Applied AI/ML concepts for optimization.</li>
-                <li>Utilized Python development tools in PyCharm.</li>
+                <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
+                <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
+                <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
+                <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
               </ul>
               <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
             </div>
           </div>
+
           <div class="timeline-item">
+            <div class="timeline-dot"></div>
             <div class="timeline-year">2024</div>
-            <div class="timeline-content">
-              <h3>Project A</h3>
+            <div class="project-card">
+              <h2>Project A</h2>
               <p>Details for Project A (2024) will go here.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Contact -->
-    <section id="contact" class="glass">
-      <div class="contact-container">
-        <div class="contact-info">
-          <h2>Contact</h2>
-          <a href="tel:+11234567890"><i class="fas fa-phone"></i> +1 (123) 456–7890</a>
-          <a href="mailto:kaius.jin@outlook.com"><i class="fas fa-envelope"></i> kaius.jin@outlook.com</a>
-          <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-          <a href="#"><i class="fab fa-github"></i> GitHub</a>
-          <a href="#"><i class="fas fa-file-alt"></i> Download CV</a>
-        </div>
+      <!-- Contact -->
+      <section id="contact">
+        <div class="contact-container">
+          <div class="contact-left">
+            <h2>Contact</h2>
+            <hr>
+            <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456-7890</span></div>
+            <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
+            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
+            <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
+            <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
+          </div>
 
-        <div class="contact-form">
-          <h2>Send Message</h2>
-          <form id="contact-form">
-            <input type="text" name="user_name" placeholder="Name" required>
-            <input type="email" name="user_email" placeholder="Email" required>
-            <textarea name="message" placeholder="Message" required></textarea>
-            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-            <button type="submit">Send</button>
-          </form>
-          <div id="status-message" class="status"></div>
+          <div class="contact-right">
+            <h2>Send Message</h2>
+            <hr>
+            <form id="contact-form" novalidate>
+              <label>Name</label>
+              <input type="text" name="from_name" placeholder="Enter your name" required>
+              <label>Email</label>
+              <input type="email" name="from_email" placeholder="Enter your email" required>
+              <label>Message</label>
+              <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
+              <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
+              <button type="submit">Send</button>
+              <div id="status-message"></div>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 
   <script>
-    // 切换导航
-    document.querySelectorAll("header nav a").forEach(link => {
-      link.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelectorAll("header nav a").forEach(l => l.classList.remove("active"));
-        this.classList.add("active");
-
-        document.querySelectorAll(".content section").forEach(sec => sec.classList.remove("active"));
-        document.querySelector(this.getAttribute("href")).classList.add("active");
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        link.classList.add('active');
+        document.getElementById(link.dataset.page).classList.add('active');
       });
     });
 
-    // EmailJS
-    (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // 替换成你的 EmailJS 公钥
-    })();
-
+    // EmailJS 表单处理
     const form = document.getElementById("contact-form");
     const statusMessage = document.getElementById("status-message");
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-      if (grecaptcha.getResponse() === "") {
-        statusMessage.className = "status error";
+      if (grecaptcha.getResponse().length === 0) {
+        statusMessage.className = "error";
         statusMessage.innerHTML = "<i class='fas fa-times-circle'></i> Please complete the reCAPTCHA";
         return;
       }
 
-      emailjs.sendForm("service_o5dzskj", "template_0tu0mh2", this)
+      emailjs.sendForm("service_o5dzskj", "template_0tu0mh2", form)
         .then(() => {
-          statusMessage.className = "status success";
+          statusMessage.className = "success";
           statusMessage.innerHTML = "<i class='fas fa-check-circle'></i> Message sent successfully!";
           form.reset();
           grecaptcha.reset();
-        }, () => {
-          statusMessage.className = "status error";
+        }, (error) => {
+          statusMessage.className = "error";
           statusMessage.innerHTML = "<i class='fas fa-times-circle'></i> Failed to send message. Please try again.";
         });
     });
