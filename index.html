@@ -70,8 +70,13 @@
     /* Contact 样式 */
     .contact-container {
       display: flex;
-      flex-direction: column;
+      flex-direction: row; /* 改为左右布局 */
+      gap: 40px;
       align-items: flex-start;
+    }
+    .contact-left {
+      display: flex;
+      flex-direction: column;
       gap: 20px;
     }
     .contact-item {
@@ -98,7 +103,7 @@
     .contact-item:hover span {
       color: #1E90FF;
     }
-    /* Download CV 按钮（和 contact-item 保持统一间距） */
+    /* Download CV 按钮 */
     .download-btn {
       display: inline-block;
       padding: 10px 20px;
@@ -111,9 +116,17 @@
       transition: all 0.3s;
     }
     .download-btn:hover {
-      background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
-      color: #1E90FF;                        /* 文字变深蓝 */
-      border-color: #1E90FF;                 /* 边框变深蓝 */
+      background: rgba(255, 255, 255, 0.2);
+      color: #1E90FF;
+      border-color: #1E90FF;
+    }
+    /* 表单 iframe 样式 */
+    .contact-right iframe {
+      border: none;
+      border-radius: 10px;
+      width: 400px;
+      height: 500px;
+      background: #fff;
     }
   </style>
 </head>
@@ -133,7 +146,7 @@
         <p>
           我是滑铁卢大学计算机科学专业的学生，热爱算法与项目开发。  
           <br>
-          <strong>这是第 3 次修改</strong>
+          <strong>这是第 4 次修改</strong>
         </p>
       </section>
 
@@ -145,24 +158,32 @@
       <section id="contact">
         <h2>联系方式</h2>
         <div class="contact-container">
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <span>+1 (123) 456-7890</span>
+          <!-- 左侧联系方式 -->
+          <div class="contact-left">
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>+1 (123) 456-7890</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <a href="https://github.com/KaiusJin" target="_blank">GitHub</a>
+            </div>
+            <a href="CV.pdf" download class="download-btn">📄 Download CV</a>
           </div>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a>
+          <!-- 右侧 Google Form -->
+          <div class="contact-right">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKiWlGSObOPJSoFzmREoxbM9y8_1Xoe-d8x8T4nrelo3WqDw/viewform?embedded=true">
+              正在加载…
+            </iframe>
           </div>
-          <div class="contact-item">
-            <i class="fab fa-linkedin"></i>
-            <a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a>
-          </div>
-          <div class="contact-item">
-            <i class="fab fa-github"></i>
-            <a href="https://github.com/KaiusJin" target="_blank">GitHub</a>
-          </div>
-          <!-- Download CV 按钮 -->
-          <a href="CV.pdf" download class="download-btn">📄 Download CV</a>
         </div>
       </section>
     </div>
