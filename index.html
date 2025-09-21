@@ -73,117 +73,64 @@
     section.active {
       display: block;
     }
-    .contact-container {
+
+    /* 📌 Project 时间轴布局 */
+    .timeline-container {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       gap: 40px;
     }
-    .contact-left {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .timeline {
+      position: relative;
       flex: 1;
+      border-left: 2px solid #1E90FF;
+      padding-left: 20px;
     }
-    .contact-left h2,
-    .contact-right h2 {
-      margin-bottom: 20px;
-      font-size: 22px;
-      border-bottom: 2px solid rgba(255,255,255,0.2);
-      padding-bottom: 8px;
+    .timeline-year {
+      position: relative;
+      margin-bottom: 40px;
     }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-size: 18px;
-      white-space: nowrap;
+    .timeline-year::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background-color: #1E90FF;
+      border-radius: 50%;
+      border: 2px solid #1E1E1E;
     }
-    .contact-item i {
-      font-size: 22px;
-      color: #fff;
-      width: 30px;
-      text-align: center;
-      transition: color 0.3s;
-    }
-    .contact-item a, .contact-item span {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .contact-item:hover i,
-    .contact-item:hover a,
-    .contact-item:hover span {
+    .timeline-year h3 {
+      margin: 0;
+      font-size: 20px;
       color: #1E90FF;
     }
-    .contact-right {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .contact-right form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
-      max-width: 400px;
-    }
-    .contact-right input,
-    .contact-right textarea {
-      padding: 10px;
-      border: 1px solid #fff;
-      border-radius: 6px;
+    .timeline-year p {
+      margin: 5px 0 0 0;
       font-size: 16px;
-      background-color: rgba(30, 30, 30, 0.8);
-      color: #fff;
-      width: 100%;
-      box-sizing: border-box;
+      color: #ccc;
     }
-    .contact-right input::placeholder,
-    .contact-right textarea::placeholder {
-      color: rgba(255,255,255,0.6);
+    .project-details {
+      flex: 2;
     }
-    .contact-right button {
-      padding: 10px;
-      border: 2px solid #fff;
-      background: transparent;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .contact-right button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #1E90FF;
-      border-color: #1E90FF;
-    }
-    .status-message {
-      margin-top: 10px;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .status-success {
-      color: #32CD32;
-      background: rgba(50, 205, 50, 0.1);
-      padding: 6px 10px;
-      border-radius: 6px;
-    }
-    .status-error {
-      color: #FF4C4C;
-      background: rgba(255, 76, 76, 0.1);
-      padding: 6px 10px;
-      border-radius: 6px;
+    .project-details h2 {
+      margin-top: 0;
     }
     @media (max-width: 768px) {
-      .contact-container {
+      .timeline-container {
         flex-direction: column;
       }
-      .contact-right form {
-        max-width: 100%;
+      .timeline {
+        border-left: none;
+        border-top: 2px solid #1E90FF;
+        padding-left: 0;
+        padding-top: 20px;
+      }
+      .timeline-year::before {
+        left: auto;
+        top: -29px;
+        right: auto;
       }
     }
   </style>
@@ -202,13 +149,32 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #15</strong>
+          <strong>This is modification #16</strong>
         </p>
       </section>
 
       <section id="project">
         <h2>Projects</h2>
-        <p>You can showcase your projects here, such as Online Exam System, Personal Website, and RateMyProfessor clone.</p>
+        <div class="timeline-container">
+          <div class="timeline">
+            <div class="timeline-year">
+              <h3>2024</h3>
+              <p>Project A</p>
+            </div>
+            <div class="timeline-year">
+              <h3>2025</h3>
+              <p>Project B</p>
+            </div>
+            <div class="timeline-year">
+              <h3>2026</h3>
+              <p>Project C</p>
+            </div>
+          </div>
+          <div class="project-details">
+            <h2>Project Details</h2>
+            <p>Click a project on the timeline to see more details here.</p>
+          </div>
+        </div>
       </section>
 
       <section id="contact">
@@ -257,6 +223,22 @@
       });
     });
 
+    // 点击时间轴事件
+    const timelineItems = document.querySelectorAll('.timeline-year');
+    const projectDetails = document.querySelector('.project-details');
+
+    timelineItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const year = item.querySelector('h3').innerText;
+        const project = item.querySelector('p').innerText;
+        projectDetails.innerHTML = `
+          <h2>${project}</h2>
+          <p>This is the description for ${project} (${year}).</p>
+        `;
+      });
+    });
+
+    // EmailJS 表单
     const form = document.getElementById('contact-form');
     const statusEl = document.getElementById('status-message');
 
