@@ -57,12 +57,12 @@
     .content {
       flex: 1;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start; /* 顶部对齐 */
+      justify-content: flex-start; /* 左侧对齐 */
       font-family: sans-serif;
       color: #fff;
-      padding: 20px;
-      text-align: center;
+      padding: 40px;
+      text-align: left; /* 左对齐 */
     }
     section {
       display: none; /* 默认隐藏 */
@@ -75,10 +75,8 @@
     .contact-container {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: flex-start; /* 靠左 */
       gap: 20px;
-      max-width: 400px;
-      margin: auto;
     }
     .contact-item {
       display: flex;
@@ -88,11 +86,11 @@
     }
     .contact-item i {
       font-size: 22px;
-      color: #4CAF50;
+      color: #fff; /* 改成白色 */
       width: 30px;
       text-align: center;
     }
-    .contact-item a {
+    .contact-item a, .contact-item span {
       color: #fff;
       text-decoration: none;
     }
