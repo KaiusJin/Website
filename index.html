@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl"); 
+      emailjs.init("Weh_j8K9Bgk4BrZFl");
     })();
   </script>
   <style>
@@ -74,10 +74,10 @@
       display: block;
     }
 
-    /* 📌 Timeline */
+    /* ===== Timeline ===== */
     .timeline-container {
       position: relative;
-      margin-left: 80px;
+      margin-left: 100px; /* 留出年份位置 */
       padding-left: 20px;
       border-left: 2px solid #fff;
     }
@@ -87,7 +87,7 @@
     }
     .timeline-dot {
       position: absolute;
-      left: -10px;
+      left: -9px; /* 圆点居中在线上 */
       top: 0;
       width: 16px;
       height: 16px;
@@ -97,7 +97,7 @@
     }
     .timeline-year {
       position: absolute;
-      left: -70px;
+      left: -85px; /* 避免年份和线重合 */
       top: 0;
       font-size: 20px;
       font-weight: bold;
@@ -127,70 +127,77 @@
       transform: translateX(8px);
     }
 
-    /* 📌 Contact */
+    /* ===== Contact ===== */
     .contact-container {
       display: flex;
+      justify-content: space-between;
       gap: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.2);
     }
     .contact-left, .contact-right {
       flex: 1;
-    }
-    .contact-left h2,
-    .contact-right h2 {
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 5px;
-      margin-bottom: 15px;
     }
     .contact-item {
       margin: 15px 0;
       display: flex;
       align-items: center;
       gap: 10px;
+      cursor: pointer;
+      transition: color 0.3s;
     }
-    .contact-left a, 
-    .contact-left i {
+    .contact-item a, 
+    .contact-item span, 
+    .contact-item i {
       color: white;
       text-decoration: none;
       transition: color 0.3s;
     }
-    .contact-left a:hover,
-    .contact-left i:hover {
+    .contact-item:hover a,
+    .contact-item:hover span,
+    .contact-item:hover i {
       color: #1E90FF;
     }
 
-    .contact-right form {
+    form {
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
-    .contact-right label {
-      margin-top: 10px;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    .contact-right input,
-    .contact-right textarea {
-      padding: 10px;
+    input, textarea {
       background: transparent;
       border: 1px solid #fff;
-      border-radius: 6px;
-      color: #fff;
-    }
-    .g-recaptcha {
-      margin-top: 15px;
-    }
-    .contact-right button {
-      margin-top: 15px;
+      border-radius: 5px;
       padding: 10px;
-      background: transparent;
-      border: 1px solid white;
       color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
+      font-size: 14px;
     }
-    .contact-right button:hover {
+    button {
+      padding: 10px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #1E90FF;
       border-color: #1E90FF;
-      color: #1E90FF;
+    }
+    #status-message {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .status-success {
+      color: #28a745;
+    }
+    .status-error {
+      color: #dc3545;
+    }
+    .status-success i, .status-error i {
+      margin-right: 8px;
     }
   </style>
 </head>
@@ -207,14 +214,13 @@
         <h1>Welcome to My Personal Website</h1>
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
+          <br>
+          <strong>This is modification with timeline + contact fixes</strong>
         </p>
       </section>
 
-      <!-- ✅ Projects -->
       <section id="project">
         <div class="timeline-container">
-
-          <!-- 2026 -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-year">2026</div>
@@ -226,7 +232,6 @@
             </div>
           </div>
 
-          <!-- 2025 -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-year">2025</div>
@@ -238,14 +243,13 @@
             </div>
           </div>
 
-          <!-- 2024 (两个项目) -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-year">2024</div>
             <div class="project-group">
               <div class="project-card">
                 <h2>AI and ML with Python</h2>
-                <p><strong>Jul 2024 – Aug 2024</strong></p>
+                <p><strong>Jul 2024 - Aug 2024</strong></p>
                 <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
                 <ul>
                   <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
@@ -261,22 +265,9 @@
               </div>
             </div>
           </div>
-
-          <!-- 2023 -->
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2023</div>
-            <div class="project-group">
-              <div class="project-card">
-                <h2>Project D</h2>
-                <p>Details for Project D (2023) will go here.</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <!-- ✅ Contact -->
       <section id="contact">
         <div class="contact-container">
           <div class="contact-left">
@@ -285,7 +276,7 @@
             <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
             <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
             <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
-            <div class="contact-item"><i class="fas fa-file-alt"></i><a href="CV.pdf" download>Download CV</a></div>
+            <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
           </div>
 
           <div class="contact-right">
@@ -293,11 +284,15 @@
             <form id="contact-form" novalidate>
               <label>Name</label>
               <input type="text" name="from_name" placeholder="Enter your name" required>
+
               <label>Email</label>
-              <input type="email" name="from_email" placeholder="Enter your email" required>
+              <input type="text" name="from_email" placeholder="Enter your email" required>
+
               <label>Message</label>
               <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
+
               <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
+
               <button type="submit">Send</button>
               <div id="status-message"></div>
             </form>
@@ -317,6 +312,29 @@
         link.classList.add('active');
         document.getElementById(link.dataset.page).classList.add('active');
       });
+    });
+
+    // EmailJS 发送表单
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const statusMessage = document.getElementById("status-message");
+      statusMessage.innerHTML = "";
+
+      const recaptcha = grecaptcha.getResponse();
+      if (!recaptcha) {
+        statusMessage.innerHTML = '<p class="status-error"><i class="fas fa-times-circle"></i> Please complete the reCAPTCHA</p>';
+        return;
+      }
+
+      emailjs.sendForm("service_o5dzskj", "template_0tu0mh2", this)
+        .then(() => {
+          statusMessage.innerHTML = '<p class="status-success"><i class="fas fa-check-circle"></i> Message sent successfully!</p>';
+          this.reset();
+          grecaptcha.reset();
+        }, () => {
+          statusMessage.innerHTML = '<p class="status-error"><i class="fas fa-times-circle"></i> Failed to send message</p>';
+        });
     });
   </script>
 </body>
