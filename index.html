@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl"); // ⚡ 你的 EmailJS Public Key
+      emailjs.init("Weh_j8K9Bgk4BrZFl"); // ✅ 你的 Public Key
     })();
   </script>
   <style>
@@ -84,7 +84,7 @@
     }
     .contact-left h2,
     .contact-right h2 {
-      border-bottom: 1px solid rgba(255,255,255,0.2); /* ✅ 白色细线 */
+      border-bottom: 1px solid rgba(255,255,255,0.2);
       padding-bottom: 5px;
       margin-bottom: 15px;
     }
@@ -120,7 +120,7 @@
       color: #fff;
     }
     .g-recaptcha {
-      margin-top: 15px; /* ✅ 防止和输入框重合 */
+      margin-top: 15px;
     }
     .contact-right button {
       margin-top: 15px;
@@ -222,7 +222,7 @@
       });
     });
 
-    // ✅ EmailJS 表单发送 (完全恢复第17版)
+    // ✅ EmailJS 表单发送
     document.getElementById("contact-form").addEventListener("submit", function(event) {
       event.preventDefault();
       const statusMessage = document.getElementById("status-message");
@@ -232,7 +232,7 @@
         return;
       }
 
-      emailjs.sendForm("service_xxxxx", "template_xxxxx", this)
+      emailjs.sendForm("service_o5dzskj", "template_0tu0mh2", this)
         .then(() => {
           statusMessage.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> Message sent successfully!</div>`;
           this.reset();
