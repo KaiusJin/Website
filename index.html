@@ -63,6 +63,7 @@
     }
     section {
       display: none;
+      height: 100%;
     }
     section.active {
       display: block;
@@ -70,14 +71,16 @@
     /* Contact 样式 */
     .contact-container {
       display: flex;
-      flex-direction: row; /* 改为左右布局 */
+      flex-direction: row;
+      justify-content: space-between; /* 左右两侧贴边 */
       gap: 40px;
-      align-items: flex-start;
+      height: 100%;
     }
     .contact-left {
       display: flex;
       flex-direction: column;
       gap: 20px;
+      flex: 1;
     }
     .contact-item {
       display: flex;
@@ -107,9 +110,9 @@
     .download-btn {
       display: inline-block;
       padding: 10px 20px;
-      border: 2px solid #fff;   /* 白色边框 */
-      color: #fff;              /* 白色文字 */
-      background: transparent;  /* 透明背景 */
+      border: 2px solid #fff;
+      color: #fff;
+      background: transparent;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
@@ -120,12 +123,17 @@
       color: #1E90FF;
       border-color: #1E90FF;
     }
-    /* 表单 iframe 样式 */
+    /* 表单 iframe */
+    .contact-right {
+      flex: 2; /* 右侧比左侧大 */
+      display: flex;
+      justify-content: flex-end; /* 靠右 */
+    }
     .contact-right iframe {
+      width: 100%;
+      height: 900px; /* 增大高度避免滚动条 */
       border: none;
       border-radius: 10px;
-      width: 400px;
-      height: 500px;
       background: #fff;
     }
   </style>
@@ -146,7 +154,7 @@
         <p>
           我是滑铁卢大学计算机科学专业的学生，热爱算法与项目开发。  
           <br>
-          <strong>这是第 4 次修改</strong>
+          <strong>这是第 5 次修改</strong>
         </p>
       </section>
 
