@@ -11,6 +11,7 @@
       margin: 0;
       height: 100%;
       background-color: #1E1E1E;
+      background-image: url('./'); /* 可以换成背景图 */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -102,15 +103,18 @@
       display: inline-block;
       margin-top: 30px;
       padding: 10px 20px;
-      background: #1E90FF;
-      color: #fff;
+      border: 2px solid #fff;   /* 白色边框 */
+      color: #fff;              /* 白色文字 */
+      background: transparent;  /* 透明背景 */
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: all 0.3s;
     }
     .download-btn:hover {
-      background: #0066CC;
+      background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+      color: #1E90FF;                        /* 文字变深蓝 */
+      border-color: #1E90FF;                 /* 边框变深蓝 */
     }
   </style>
 </head>
