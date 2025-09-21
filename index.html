@@ -76,15 +76,23 @@
     }
 
     /* -------- Projects Timeline -------- */
-    #project {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 20px;
-      height: 100%;
-      overflow-y: auto;   /* 内部垂直滚动 */
-      overflow-x: hidden; /* 禁止横向滚动 */
-      box-sizing: border-box;
-    }
+#project {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 80px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ✅ 边框移到这里 */
+  border-radius: 20px;
+  padding: 20px;
+}
+
     .timeline-container {
       display: flex;
       flex-direction: column;
