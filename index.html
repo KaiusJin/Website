@@ -35,7 +35,7 @@
       flex-direction: column;
       width: calc(100% - 40px);
       max-width: 1200px;
-      min-height: 90vh;  /* 至少 90% 高度 */
+      min-height: 90vh;
       box-sizing: border-box;
       overflow: hidden;
     }
@@ -64,7 +64,7 @@
       flex: 1;
       padding: 20px;
       text-align: left;
-      overflow-y: auto;  /* 内容超出时滚动 */
+      overflow-y: auto;
     }
     section {
       display: none;
@@ -85,12 +85,19 @@
       gap: 20px;
       flex: 1;
     }
+    .contact-left h2,
+    .contact-right h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+      padding-bottom: 8px;
+    }
     .contact-item {
       display: flex;
       align-items: center;
       gap: 15px;
       font-size: 18px;
-      white-space: nowrap; /* 避免换行 */
+      white-space: nowrap;
     }
     .contact-item i {
       font-size: 22px;
@@ -112,7 +119,8 @@
     .contact-right {
       flex: 2;
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     .contact-right form {
       display: flex;
@@ -170,21 +178,12 @@
       padding: 6px 10px;
       border-radius: 6px;
     }
-
-    /* 📱 响应式布局 */
     @media (max-width: 768px) {
       .contact-container {
         flex-direction: column;
       }
-      .contact-right {
-        justify-content: flex-start;
-      }
       .contact-right form {
         max-width: 100%;
-      }
-      nav a {
-        font-size: 14px;
-        margin: 0 10px;
       }
     }
   </style>
@@ -203,7 +202,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #14</strong>
+          <strong>This is modification #15</strong>
         </p>
       </section>
 
@@ -213,9 +212,9 @@
       </section>
 
       <section id="contact">
-        <h2>Contact</h2>
         <div class="contact-container">
           <div class="contact-left">
+            <h2>Contact</h2>
             <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456-7890</span></div>
             <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
             <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
@@ -224,6 +223,7 @@
           </div>
 
           <div class="contact-right">
+            <h2>Send Message</h2>
             <form id="contact-form" novalidate>
               <label>Name</label>
               <input type="text" name="from_name" placeholder="Enter your name" required>
