@@ -106,22 +106,6 @@
     .contact-item:hover span {
       color: #1E90FF;
     }
-    .download-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      border: 2px solid #fff;
-      color: #fff;
-      background: transparent;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    .download-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #1E90FF;
-      border-color: #1E90FF;
-    }
     .contact-right {
       flex: 2;
       display: flex;
@@ -137,9 +121,15 @@
     .contact-right input,
     .contact-right textarea {
       padding: 10px;
-      border: 1px solid #ccc;
+      border: 1px solid #fff;
       border-radius: 6px;
       font-size: 16px;
+      background-color: rgba(30, 30, 30, 0.8); /* 深灰透明背景 */
+      color: #fff;
+    }
+    .contact-right input::placeholder,
+    .contact-right textarea::placeholder {
+      color: rgba(255,255,255,0.6); /* 半透明白色 */
     }
     .contact-right button {
       padding: 10px;
@@ -191,7 +181,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #11</strong>
+          <strong>This is modification #12</strong>
         </p>
       </section>
 
@@ -208,19 +198,19 @@
             <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
             <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
             <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
-            <a href="CV.pdf" download class="download-btn">📄 Download CV</a>
+            <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
           </div>
 
           <div class="contact-right">
             <form id="contact-form" novalidate>
               <label>Name</label>
-              <input type="text" name="from_name" required>
+              <input type="text" name="from_name" placeholder="Enter your name" required>
 
               <label>Email</label>
-              <input type="email" name="from_email" required>
+              <input type="email" name="from_email" placeholder="Enter your email" required>
 
               <label>Message</label>
-              <textarea name="message" rows="6" required></textarea>
+              <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
 
               <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
 
@@ -250,15 +240,12 @@
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
-
-      // 清空旧提示
       statusEl.innerHTML = "";
 
       const name = form.from_name.value.trim();
       const email = form.from_email.value.trim();
       const message = form.message.value.trim();
 
-      // 自定义校验
       if (!name) {
         statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please enter your name</span>';
         return;
@@ -272,14 +259,12 @@
         return;
       }
 
-      // reCAPTCHA 校验
       const response = grecaptcha.getResponse();
       if (!response) {
         statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please complete the CAPTCHA</span>';
         return;
       }
 
-      // 发送邮件
       emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', form)
         .then(function() {
           statusEl.innerHTML = '<span class="status-message status-success"><i class="fas fa-check-circle"></i> Message sent successfully</span>';
