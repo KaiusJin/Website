@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl");
+      emailjs.init("Weh_j8K9Bgk4BrZFl"); /* 你的 EmailJS Public Key */
     })();
   </script>
   <style>
@@ -69,25 +69,31 @@
     section {
       display: none;
       height: 100%;
-      overflow-y: auto;
-      overflow-x: hidden; /* 禁止横向滚动 */
-      padding-right: 12px; /* 给竖直滚动条留空间 */
-      box-sizing: content-box;
+      box-sizing: border-box;
     }
     section.active {
       display: block;
     }
 
-    /* 📌 Projects Timeline */
+    /* -------- Projects Timeline -------- */
+    #project {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 20px;
+      height: 100%;
+      overflow-y: auto;   /* 内部垂直滚动 */
+      overflow-x: hidden; /* 禁止横向滚动 */
+      box-sizing: border-box;
+    }
     .timeline-container {
       display: flex;
       flex-direction: column;
       position: relative;
-      margin-left: 100px; /* 整体右移，留出年份空间 */
+      margin-left: 80px; /* 让年份不被遮挡 */
     }
     .timeline-line {
       position: absolute;
-      left: 60px;
+      left: -40px;
       top: 0;
       bottom: 0;
       width: 2px;
@@ -101,19 +107,18 @@
     }
     .timeline-dot {
       position: absolute;
-      left: 52px;
+      left: -48px;
       width: 16px;
       height: 16px;
       background: #fff;
       border-radius: 50%;
+      transition: transform 0.3s;
     }
     .timeline-year {
       position: absolute;
-      left: 0;
+      left: -90px;
       font-size: 20px;
       font-weight: bold;
-      min-width: 50px;
-      text-align: right;
     }
     .project-card {
       border: 1px solid #fff;
@@ -121,80 +126,110 @@
       padding: 20px;
       background: none;
       flex: 1;
-      margin-left: 40px;
+      transition: transform 0.3s;
     }
     .project-card h2 {
       margin-top: 0;
       color: #1E90FF;
     }
+    .project-card ul {
+      margin: 10px 0 0 20px;
+    }
 
-    /* Contact */
+    .timeline-item:hover .timeline-dot {
+      transform: translateX(8px);
+    }
+    .timeline-item:hover .project-card {
+      transform: translateX(8px);
+    }
+
+    /* -------- Contact Section -------- */
+    #contact {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
     .contact-container {
       display: flex;
       justify-content: space-between;
       gap: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 20px;
+    }
+    .contact-left, .contact-right {
+      flex: 1;
     }
     .contact-item {
-      margin-bottom: 15px;
+      margin: 12px 0;
       display: flex;
       align-items: center;
       gap: 10px;
       transition: color 0.3s;
     }
-    .contact-item a, .contact-item span, .contact-item i {
-      color: #fff;
+    .contact-item i {
+      width: 20px;
       transition: color 0.3s;
+    }
+    .contact-item a, .contact-item span {
+      color: #fff;
       text-decoration: none;
+      transition: color 0.3s;
     }
     .contact-item:hover a,
     .contact-item:hover span,
     .contact-item:hover i {
       color: #1E90FF;
     }
-
-    .contact-right {
-      flex: 1;
-      border-left: 1px solid rgba(255,255,255,0.2);
-      padding-left: 20px;
-    }
     form {
       display: flex;
       flex-direction: column;
     }
-    input, textarea {
-      margin-bottom: 15px;
+    form label {
+      margin: 8px 0 4px;
+    }
+    form input, form textarea {
       padding: 10px;
-      border: 1px solid #fff;
+      border: 1px solid #ccc;
       border-radius: 5px;
+      margin-bottom: 12px;
       background: transparent;
       color: #fff;
     }
-    /* 按钮恢复以前细白边框样式 */
+    form textarea {
+      resize: none;
+    }
     button {
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #fff;
-      border-radius: 5px;
       background: transparent;
       color: #fff;
-      font-weight: bold;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 16px;
       transition: background 0.3s, color 0.3s;
     }
     button:hover {
       background: #1E90FF;
       color: #fff;
     }
-    #status-message {
+    .success {
+      color: #4CAF50;
       margin-top: 10px;
-      font-size: 14px;
     }
-    #status-message.success {
-      color: lightgreen;
+    .error {
+      color: #f44336;
+      margin-top: 10px;
     }
-    #status-message.error {
-      color: red;
+
+    /* 滚动条美化 */
+    #project::-webkit-scrollbar {
+      width: 8px;
+    }
+    #project::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.4);
+      border-radius: 4px;
+    }
+    #project::-webkit-scrollbar-track {
+      background: transparent;
     }
   </style>
 </head>
@@ -207,18 +242,24 @@
     </nav>
 
     <div class="content">
+      <!-- About -->
       <section id="about" class="active">
         <h1>Welcome to My Personal Website</h1>
-        <p>I am a Computer Science student at the University of Waterloo.</p>
+        <p>
+          11I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
+          <br>
+          <strong>This is the unified version</strong>
+        </p>
       </section>
 
+      <!-- Projects -->
       <section id="project">
         <div class="timeline-container">
           <div class="timeline-line"></div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2026</div>
             <div class="timeline-dot"></div>
+            <div class="timeline-year">2026</div>
             <div class="project-card">
               <h2>Project C</h2>
               <p>Details for Project C (2026) will go here.</p>
@@ -226,8 +267,8 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2025</div>
             <div class="timeline-dot"></div>
+            <div class="timeline-year">2025</div>
             <div class="project-card">
               <h2>Project B</h2>
               <p>Details for Project B (2025) will go here.</p>
@@ -235,24 +276,25 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2024</div>
             <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
             <div class="project-card">
               <h2>AI and ML with Python</h2>
               <p><strong>Jul 2024 — Aug 2024</strong></p>
               <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
               <ul>
-                <li>Developed a Discord server bot using PyCharm.</li>
-                <li>Implemented asynchronous programming techniques.</li>
-                <li>Applied AI/ML concepts to optimize code.</li>
+                <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
+                <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
+                <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
+                <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
               </ul>
-              <p><strong>Skills:</strong> Python · API · ML</p>
+              <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2024</div>
             <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
             <div class="project-card">
               <h2>Project A</h2>
               <p>Details for Project A (2024) will go here.</p>
@@ -261,31 +303,30 @@
         </div>
       </section>
 
+      <!-- Contact -->
       <section id="contact">
         <div class="contact-container">
           <div class="contact-left">
             <h2>Contact</h2>
+            <hr>
             <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456-7890</span></div>
             <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
-            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="#">LinkedIn</a></div>
-            <div class="contact-item"><i class="fab fa-github"></i><a href="#">GitHub</a></div>
+            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
+            <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
             <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
           </div>
 
           <div class="contact-right">
             <h2>Send Message</h2>
+            <hr>
             <form id="contact-form" novalidate>
               <label>Name</label>
               <input type="text" name="from_name" placeholder="Enter your name" required>
-
               <label>Email</label>
-              <input type="text" name="from_email" placeholder="Enter your email" required>
-
+              <input type="email" name="from_email" placeholder="Enter your email" required>
               <label>Message</label>
               <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
-
               <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
-
               <button type="submit">Send</button>
               <div id="status-message"></div>
             </form>
@@ -307,13 +348,14 @@
       });
     });
 
+    // EmailJS 表单处理
     const form = document.getElementById("contact-form");
     const statusMessage = document.getElementById("status-message");
 
     form.addEventListener("submit", function(event) {
       event.preventDefault();
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (!recaptchaResponse) {
+
+      if (grecaptcha.getResponse().length === 0) {
         statusMessage.className = "error";
         statusMessage.innerHTML = "<i class='fas fa-times-circle'></i> Please complete the reCAPTCHA";
         return;
@@ -325,7 +367,7 @@
           statusMessage.innerHTML = "<i class='fas fa-check-circle'></i> Message sent successfully!";
           form.reset();
           grecaptcha.reset();
-        }, () => {
+        }, (error) => {
           statusMessage.className = "error";
           statusMessage.innerHTML = "<i class='fas fa-times-circle'></i> Failed to send message. Please try again.";
         });
