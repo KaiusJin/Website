@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl"); // ✅ 你的 Public Key
+      emailjs.init("Weh_j8K9Bgk4BrZFl"); // ✅ Public Key
     })();
   </script>
   <style>
@@ -72,6 +72,57 @@
     }
     section.active {
       display: block;
+    }
+
+    /* 📌 Timeline Projects */
+    .timeline-container {
+      position: relative;
+      margin-left: 80px;
+      padding-left: 20px;
+      border-left: 2px solid #fff;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -10px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .timeline-year {
+      position: absolute;
+      left: -70px;
+      top: 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .project-card {
+      border: 1px solid #fff;
+      border-radius: 10px;
+      padding: 20px;
+      background: none;
+      margin-left: 30px;
+      transition: transform 0.3s;
+    }
+    .project-card h2 {
+      margin-top: 0;
+      color: #1E90FF;
+    }
+    .project-card ul {
+      margin: 10px 0 0 20px;
+    }
+    /* Hover 效果 */
+    .timeline-item:hover .timeline-dot {
+      transform: translateX(8px);
+    }
+    .timeline-item:hover .project-card {
+      transform: translateX(8px);
     }
 
     /* 📌 Contact Section */
@@ -137,7 +188,7 @@
       color: #1E90FF;
     }
 
-    /* ✅ 第17版提示样式 */
+    /* 提示信息 */
     #status-message {
       margin-top: 10px;
       font-size: 14px;
@@ -169,16 +220,73 @@
         <h1>Welcome to My Personal Website</h1>
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
-          <br>
-          <strong>This is modification #18 style restored</strong>
         </p>
       </section>
 
+      <!-- ✅ Projects Timeline -->
       <section id="project">
-        <h2>Projects</h2>
-        <p>这里放 timeline 内容...</p>
+        <div class="timeline-container">
+
+          <!-- 2026 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2026</div>
+            <div class="project-card">
+              <h2>Project C</h2>
+              <p>Details for Project C (2026) will go here.</p>
+            </div>
+          </div>
+
+          <!-- 2025 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2025</div>
+            <div class="project-card">
+              <h2>Project B</h2>
+              <p>Details for Project B (2025) will go here.</p>
+            </div>
+          </div>
+
+          <!-- 2024 (两个项目) -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
+            <div class="project-card">
+              <h2>AI and ML with Python</h2>
+              <p><strong>Jul 2024 – Aug 2024</strong></p>
+              <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
+              <ul>
+                <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
+                <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
+                <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
+                <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
+              </ul>
+              <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
+            <div class="project-card">
+              <h2>Project A</h2>
+              <p>Details for Project A (2024) will go here.</p>
+            </div>
+          </div>
+
+          <!-- 2023 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2023</div>
+            <div class="project-card">
+              <h2>Project D</h2>
+              <p>Details for Project D (2023) will go here.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
+      <!-- ✅ Contact Section -->
       <section id="contact">
         <div class="contact-container">
           <div class="contact-left">
