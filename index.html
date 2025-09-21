@@ -7,6 +7,7 @@
   <!-- Font Awesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
       emailjs.init("Weh_j8K9Bgk4BrZFl"); // Public Key
@@ -196,7 +197,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #8</strong>
+          <strong>This is modification #9</strong>
         </p>
       </section>
 
@@ -241,6 +242,9 @@
               <label>Message</label>
               <textarea name="message" rows="6" required></textarea>
 
+              <!-- reCAPTCHA -->
+              <div class="g-recaptcha" data-sitekey="6LeII9ArAAAAADRo5_BtV8Y7rvQs1gGU-sLYdIZS"></div>
+
               <button type="submit">Send</button>
               <div id="status-message"></div>
             </form>
@@ -270,10 +274,18 @@
       event.preventDefault();
       const statusEl = document.getElementById('status-message');
 
+      // 检查 reCAPTCHA
+      const response = grecaptcha.getResponse();
+      if (!response) {
+        statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please complete the CAPTCHA</span>';
+        return;
+      }
+
       emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', this)
         .then(function() {
           statusEl.innerHTML = '<span class="status-message status-success"><i class="fas fa-check-circle"></i> Message sent successfully</span>';
           document.getElementById('contact-form').reset();
+          grecaptcha.reset();
         }, function(error) {
           statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-times-circle"></i> Failed to send message</span>';
           console.error('FAILED...', error);
