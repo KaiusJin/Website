@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
-      emailjs.init("Weh_j8K9Bgk4BrZFl"); /* Public Key */
+      emailjs.init("Weh_j8K9Bgk4BrZFl");
     })();
   </script>
   <style>
@@ -64,11 +64,15 @@
       flex: 1;
       padding: 20px;
       text-align: left;
-      overflow-y: auto;
+      overflow: hidden;
     }
     section {
       display: none;
-      min-height: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden; /* 禁止横向滚动 */
+      padding-right: 12px; /* 给竖直滚动条留空间 */
+      box-sizing: content-box;
     }
     section.active {
       display: block;
@@ -79,11 +83,15 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      margin-left: 40px;
-      padding-left: 40px;
-      border-left: 2px solid #fff;
-      max-height: 70vh;
-      overflow-y: auto;
+      margin-left: 100px; /* 整体右移，留出年份空间 */
+    }
+    .timeline-line {
+      position: absolute;
+      left: 60px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #fff;
     }
     .timeline-item {
       display: flex;
@@ -93,18 +101,19 @@
     }
     .timeline-dot {
       position: absolute;
-      left: -9px;
+      left: 52px;
       width: 16px;
       height: 16px;
       background: #fff;
       border-radius: 50%;
-      transition: transform 0.3s;
     }
     .timeline-year {
       position: absolute;
-      left: -60px;
-      font-size: 18px;
+      left: 0;
+      font-size: 20px;
       font-weight: bold;
+      min-width: 50px;
+      text-align: right;
     }
     .project-card {
       border: 1px solid #fff;
@@ -112,87 +121,68 @@
       padding: 20px;
       background: none;
       flex: 1;
-      transition: transform 0.3s;
-      margin-left: 30px;
+      margin-left: 40px;
     }
     .project-card h2 {
       margin-top: 0;
       color: #1E90FF;
     }
-    .project-card ul {
-      margin: 10px 0 0 20px;
-    }
 
-    .timeline-item:hover .timeline-dot {
-      transform: translateX(8px);
-    }
-    .timeline-item:hover .project-card {
-      transform: translateX(8px);
-    }
-
-    /* 📌 Contact */
+    /* Contact */
     .contact-container {
       display: flex;
       justify-content: space-between;
       gap: 40px;
-      margin-top: 20px;
-    }
-    .contact-left, .contact-right {
-      flex: 1;
-    }
-    .contact-left h2,
-    .contact-right h2 {
-      margin-bottom: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.2);
-      padding-bottom: 5px;
+      padding-bottom: 20px;
     }
     .contact-item {
-      margin: 10px 0;
+      margin-bottom: 15px;
       display: flex;
       align-items: center;
       gap: 10px;
       transition: color 0.3s;
     }
-    .contact-item i {
-      width: 20px;
-      transition: color 0.3s;
-    }
-    .contact-item a, .contact-item span {
+    .contact-item a, .contact-item span, .contact-item i {
       color: #fff;
-      text-decoration: none;
       transition: color 0.3s;
+      text-decoration: none;
     }
-    .contact-item:hover i,
     .contact-item:hover a,
-    .contact-item:hover span {
+    .contact-item:hover span,
+    .contact-item:hover i {
       color: #1E90FF;
     }
 
-    /* 📌 Form */
+    .contact-right {
+      flex: 1;
+      border-left: 1px solid rgba(255,255,255,0.2);
+      padding-left: 20px;
+    }
     form {
       display: flex;
       flex-direction: column;
     }
-    form label {
-      margin: 8px 0 4px;
-    }
-    form input, form textarea {
-      padding: 10px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    form button {
+    input, textarea {
+      margin-bottom: 15px;
       padding: 10px;
       border: 1px solid #fff;
       border-radius: 5px;
-      background: none;
+      background: transparent;
       color: #fff;
+    }
+    /* 按钮恢复以前细白边框样式 */
+    button {
+      padding: 10px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background: transparent;
+      color: #fff;
+      font-weight: bold;
       cursor: pointer;
       transition: background 0.3s, color 0.3s;
     }
-    form button:hover {
+    button:hover {
       background: #1E90FF;
       color: #fff;
     }
@@ -201,10 +191,10 @@
       font-size: 14px;
     }
     #status-message.success {
-      color: #4CAF50;
+      color: lightgreen;
     }
     #status-message.error {
-      color: #FF5252;
+      color: red;
     }
   </style>
 </head>
@@ -219,48 +209,50 @@
     <div class="content">
       <section id="about" class="active">
         <h1>Welcome to My Personal Website</h1>
-        <p>
-          I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.
-        </p>
+        <p>I am a Computer Science student at the University of Waterloo.</p>
       </section>
 
       <section id="project">
         <div class="timeline-container">
+          <div class="timeline-line"></div>
+
           <div class="timeline-item">
-            <div class="timeline-dot"></div>
             <div class="timeline-year">2026</div>
+            <div class="timeline-dot"></div>
             <div class="project-card">
               <h2>Project C</h2>
               <p>Details for Project C (2026) will go here.</p>
             </div>
           </div>
+
           <div class="timeline-item">
-            <div class="timeline-dot"></div>
             <div class="timeline-year">2025</div>
+            <div class="timeline-dot"></div>
             <div class="project-card">
               <h2>Project B</h2>
               <p>Details for Project B (2025) will go here.</p>
             </div>
           </div>
+
           <div class="timeline-item">
-            <div class="timeline-dot"></div>
             <div class="timeline-year">2024</div>
+            <div class="timeline-dot"></div>
             <div class="project-card">
               <h2>AI and ML with Python</h2>
-              <p><strong>Jul 2024 – Aug 2024</strong></p>
+              <p><strong>Jul 2024 — Aug 2024</strong></p>
               <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
               <ul>
-                <li>Developed a Discord server bot using PyCharm...</li>
-                <li>Implemented asynchronous programming techniques...</li>
-                <li>Applied AI/ML concepts learned through coursework...</li>
-                <li>Utilized Python development tools in PyCharm...</li>
+                <li>Developed a Discord server bot using PyCharm.</li>
+                <li>Implemented asynchronous programming techniques.</li>
+                <li>Applied AI/ML concepts to optimize code.</li>
               </ul>
-              <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
+              <p><strong>Skills:</strong> Python · API · ML</p>
             </div>
           </div>
+
           <div class="timeline-item">
-            <div class="timeline-dot"></div>
             <div class="timeline-year">2024</div>
+            <div class="timeline-dot"></div>
             <div class="project-card">
               <h2>Project A</h2>
               <p>Details for Project A (2024) will go here.</p>
@@ -275,8 +267,8 @@
             <h2>Contact</h2>
             <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456-7890</span></div>
             <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
-            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
-            <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
+            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="#">LinkedIn</a></div>
+            <div class="contact-item"><i class="fab fa-github"></i><a href="#">GitHub</a></div>
             <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
           </div>
 
@@ -287,7 +279,7 @@
               <input type="text" name="from_name" placeholder="Enter your name" required>
 
               <label>Email</label>
-              <input type="email" name="from_email" placeholder="Enter your email" required>
+              <input type="text" name="from_email" placeholder="Enter your email" required>
 
               <label>Message</label>
               <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
@@ -320,8 +312,8 @@
 
     form.addEventListener("submit", function(event) {
       event.preventDefault();
-
-      if (!grecaptcha.getResponse()) {
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
         statusMessage.className = "error";
         statusMessage.innerHTML = "<i class='fas fa-times-circle'></i> Please complete the reCAPTCHA";
         return;
@@ -333,8 +325,7 @@
           statusMessage.innerHTML = "<i class='fas fa-check-circle'></i> Message sent successfully!";
           form.reset();
           grecaptcha.reset();
-        }, (error) => {
-          console.error("EmailJS error:", error);
+        }, () => {
           statusMessage.className = "error";
           statusMessage.innerHTML = "<i class='fas fa-times-circle'></i> Failed to send message. Please try again.";
         });
