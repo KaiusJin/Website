@@ -33,7 +33,7 @@
       min-height:100vh;
       background:var(--bg);
       color:var(--white);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -51,7 +51,7 @@
       -webkit-backdrop-filter: blur(10px);
       display:flex;
       flex-direction:column;
-      overflow:hidden;
+      overflow:hidden;   /* 外层不滚动 */
       box-sizing:border-box;
     }
 
@@ -73,115 +73,89 @@
     }
     nav a:hover, nav a.active{ color:var(--blue); }
 
-    .content{ flex:1; padding:20px; overflow-y:auto; }
-    section{ display:none; }
-    section.active{ display:block; }
+    .content{ flex:1; padding:20px; overflow:hidden; }
+    section{ display:none; height:100%; }
+    section.active{ display:block; height:100%; }
 
     /* ===== Timeline (Project) ===== */
+    .timeline-wrapper{
+      height:100%;
+      overflow-y:auto;   /* 内部可滚动 */
+      padding-right:10px;
+    }
     .timeline-container{
       position:relative;
-      /* 往左移一点（原来 100px） */
       margin-left:80px;
       padding-left:18px;
       border-left:2px solid var(--white);
     }
-    .timeline-item{
-      position:relative;
-      margin-bottom:60px;
-    }
-    /* 圆点在白线中心 */
+    .timeline-item{ position:relative; margin-bottom:60px; }
     .timeline-dot{
       position:absolute;
-      left:-9px;         /* 16px 圆点在 2px 线中居中 */
-      top:0;
+      left:-9px; top:0;
       width:16px; height:16px; border-radius:50%;
       background:var(--white);
       transition: transform .25s ease;
     }
-    /* 年份与线不重叠（配合整体左移重新微调） */
     .timeline-year{
       position:absolute;
-      left:-76px;   /* 原 -85px，整体左移后微调间距 */
-      top:0;
+      left:-76px; top:0;
       font-weight:700;
       font-size:20px;
     }
-    /* 让卡片更宽一点：减小与线的距离 */
-    .project-group{ margin-left:16px; } /* 原 30px */
-
+    .project-group{ margin-left:16px; }
     .project-card{
       border:1px solid var(--white);
       border-radius:12px;
       padding:20px 22px;
-      background:none;         /* 透明，透出背景色 */
       margin-bottom:20px;
       transition: transform .25s ease;
+      background:none;
     }
     .project-card h2{ margin:0 0 10px; color:var(--blue); }
     .project-card ul{ margin:10px 0 0 22px; }
-
-    .timeline-item:hover .timeline-dot{ transform: translateX(8px); }
-    .timeline-item:hover .project-card{ transform: translateX(8px); }
+    .timeline-item:hover .timeline-dot{ transform:translateX(8px); }
+    .timeline-item:hover .project-card{ transform:translateX(8px); }
 
     /* ===== Contact ===== */
-    .contact-container{
-      display:flex; gap:40px;
-      /* ❌ 不在容器顶上画线，改为各自标题下方画线 */
-      padding-top:8px;
-    }
+    .contact-container{ display:flex; gap:40px; padding-top:8px; }
     .contact-left, .contact-right{ flex:1; }
-
-    /* 在 Contact 与 Send Message 标题下分别画细白线 */
     .contact-left h2, .contact-right h2{
       font-size:24px;
       margin:0 0 14px;
       padding-bottom:6px;
       border-bottom:1px solid var(--line);
     }
-
-    .contact-item{
-      display:flex; align-items:center; gap:10px;
-      margin:14px 0; cursor:pointer;
-      transition: color .25s ease;
-    }
-    .contact-item i, .contact-item a, .contact-item span{
-      color:var(--white); text-decoration:none; transition:color .25s ease;
-    }
-    /* 悬停整行，图标与文字一起变深蓝（电话也会变） */
-    .contact-item:hover i,
-    .contact-item:hover a,
-    .contact-item:hover span{ color:var(--blue); }
+    .contact-item{ display:flex; align-items:center; gap:10px; margin:14px 0; cursor:pointer; }
+    .contact-item i, .contact-item a, .contact-item span{ color:var(--white); text-decoration:none; transition:color .25s ease; }
+    .contact-item:hover i, .contact-item:hover a, .contact-item:hover span{ color:var(--blue); }
 
     form{ display:flex; flex-direction:column; gap:10px; }
     input, textarea{
-      width:100%;
-      box-sizing:border-box;
+      width:100%; box-sizing:border-box;
       background:transparent; color:var(--white);
       border:1px solid var(--white); border-radius:6px;
       padding:10px; font-size:14px;
     }
-    .g-recaptcha{ margin-top:10px; } /* 与上方输入框拉开距离 */
+    .g-recaptcha{ margin-top:10px; }
     button{
-      margin-top:6px;
-      padding:10px 12px;
-      border:1px solid var(--white);
-      border-radius:6px; background:transparent; color:var(--white);
+      margin-top:6px; padding:10px 12px;
+      border:1px solid var(--white); border-radius:6px;
+      background:transparent; color:var(--white);
       font-size:16px; cursor:pointer; transition:.25s ease;
     }
     button:hover{ border-color:var(--blue); color:var(--blue); }
-
-    /* 第17版提示样式（绿色成功/红色失败） */
     #status-message{ margin-top:10px; font-size:14px; }
     .success-message{ color:var(--success); display:flex; align-items:center; gap:6px; }
     .error-message{ color:var(--error); display:flex; align-items:center; gap:6px; }
 
     /* ===== Responsive ===== */
-    @media (max-width: 900px){
+    @media (max-width:900px){
       .contact-container{ flex-direction:column; }
       .timeline-container{ margin-left:70px; }
       .timeline-year{ left:-70px; }
     }
-    @media (max-width: 520px){
+    @media (max-width:520px){
       .timeline-container{ margin-left:62px; }
       .timeline-year{ left:-64px; font-size:18px; }
     }
@@ -200,106 +174,84 @@
       <!-- About -->
       <section id="about" class="active">
         <h1>Welcome to My Personal Website</h1>
-        <p>
-          I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.
-        </p>
+        <p>I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.</p>
       </section>
 
-      <!-- Project / Timeline -->
+      <!-- Project -->
       <section id="project">
-        <div class="timeline-container">
-
-          <!-- 2026 -->
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2026</div>
-            <div class="project-group">
-              <div class="project-card">
-                <h2>Project C</h2>
-                <p>Details for Project C (2026) will go here.</p>
+        <div class="timeline-wrapper">
+          <div class="timeline-container">
+            <!-- 2026 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2026</div>
+              <div class="project-group">
+                <div class="project-card">
+                  <h2>Project C</h2>
+                  <p>Details for Project C (2026) will go here.</p>
+                </div>
+              </div>
+            </div>
+            <!-- 2025 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2025</div>
+              <div class="project-group">
+                <div class="project-card">
+                  <h2>Project B</h2>
+                  <p>Details for Project B (2025) will go here.</p>
+                </div>
+              </div>
+            </div>
+            <!-- 2024 两个项目 -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2024</div>
+              <div class="project-group">
+                <div class="project-card">
+                  <h2>AI and ML with Python</h2>
+                  <p><strong>Jul 2024 — Aug 2024</strong></p>
+                  <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
+                  <ul>
+                    <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
+                    <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
+                    <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
+                    <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
+                  </ul>
+                  <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
+                </div>
+                <div class="project-card">
+                  <h2>Project A</h2>
+                  <p>Details for Project A (2024) will go here.</p>
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- 2025 -->
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2025</div>
-            <div class="project-group">
-              <div class="project-card">
-                <h2>Project B</h2>
-                <p>Details for Project B (2025) will go here.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2024（两个项目在同一年份下） -->
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-year">2024</div>
-            <div class="project-group">
-              <div class="project-card">
-                <h2>AI and ML with Python</h2>
-                <p><strong>Jul 2024 — Aug 2024</strong></p>
-                <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
-                <ul>
-                  <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
-                  <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
-                  <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
-                  <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
-                </ul>
-                <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
-              </div>
-
-              <div class="project-card">
-                <h2>Project A</h2>
-                <p>Details for Project A (2024) will go here.</p>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
       <!-- Contact -->
       <section id="contact">
         <div class="contact-container">
-          <!-- 左列 -->
           <div class="contact-left">
             <h2>Contact</h2>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i><span>+1 (123) 456–7890</span>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a>
-            </div>
+            <div class="contact-item"><i class="fas fa-phone"></i><span>+1 (123) 456–7890</span></div>
+            <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a></div>
+            <div class="contact-item"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a></div>
+            <div class="contact-item"><i class="fab fa-github"></i><a href="https://github.com/KaiusJin" target="_blank">GitHub</a></div>
+            <div class="contact-item"><i class="fas fa-file-lines"></i><a href="CV.pdf" download>Download CV</a></div>
           </div>
 
-          <!-- 右列 -->
           <div class="contact-right">
             <h2>Send Message</h2>
-
             <form id="contact-form" novalidate>
               <label>Name</label>
               <input type="text" name="from_name" placeholder="Enter your name" required>
-
               <label>Email</label>
               <input type="email" name="from_email" placeholder="Enter your email" required>
-
               <label>Message</label>
               <textarea name="message" rows="6" placeholder="Write your message..." required></textarea>
-
               <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
-
               <button type="submit">Send</button>
               <div id="status-message"></div>
             </form>
@@ -310,11 +262,10 @@
   </div>
 
   <script>
-    /* ===== Nav SPA 切换 ===== */
-    const navLinks = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('section');
+    const navLinks=document.querySelectorAll('nav a');
+    const sections=document.querySelectorAll('section');
     navLinks.forEach(a=>{
-      a.addEventListener('click', ()=>{
+      a.addEventListener('click',()=>{
         navLinks.forEach(x=>x.classList.remove('active'));
         sections.forEach(s=>s.classList.remove('active'));
         a.classList.add('active');
@@ -322,25 +273,21 @@
       });
     });
 
-    /* ===== EmailJS 发送（第17版提示） ===== */
-    document.getElementById('contact-form').addEventListener('submit', function(e){
+    document.getElementById('contact-form').addEventListener('submit',function(e){
       e.preventDefault();
-      const status = document.getElementById('status-message');
-
-      if (grecaptcha.getResponse().length === 0){
-        status.innerHTML = `<div class="error-message"><i class="fas fa-times-circle"></i> Please complete the reCAPTCHA.</div>`;
+      const status=document.getElementById('status-message');
+      if(grecaptcha.getResponse().length===0){
+        status.innerHTML=`<div class="error-message"><i class="fas fa-times-circle"></i> Please complete the reCAPTCHA.</div>`;
         return;
       }
-
-      emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', this)
-        .then(()=>{
-          status.innerHTML = `<div class="success-message"><i class="fas fa-check-circle"></i> Message sent successfully!</div>`;
-          this.reset();
-          grecaptcha.reset();
-        })
-        .catch(()=>{
-          status.innerHTML = `<div class="error-message"><i class="fas fa-times-circle"></i> Failed to send message. Please try again.</div>`;
-        });
+      emailjs.sendForm('service_o5dzskj','template_0tu0mh2',this)
+      .then(()=>{
+        status.innerHTML=`<div class="success-message"><i class="fas fa-check-circle"></i> Message sent successfully!</div>`;
+        this.reset(); grecaptcha.reset();
+      })
+      .catch(()=>{
+        status.innerHTML=`<div class="error-message"><i class="fas fa-times-circle"></i> Failed to send message. Please try again.</div>`;
+      });
     });
   </script>
 </body>
