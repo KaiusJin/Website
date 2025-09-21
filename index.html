@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personal Website</title>
-  <!-- Font Awesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <!-- reCAPTCHA v2 -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     (function(){
@@ -167,9 +165,15 @@
     }
     .status-success {
       color: #32CD32;
+      background: rgba(50, 205, 50, 0.1);
+      padding: 6px 10px;
+      border-radius: 6px;
     }
     .status-error {
-      color: #FF6347;
+      color: #FF4C4C;
+      background: rgba(255, 76, 76, 0.1);
+      padding: 6px 10px;
+      border-radius: 6px;
     }
   </style>
 </head>
@@ -187,7 +191,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #10</strong>
+          <strong>This is modification #11</strong>
         </p>
       </section>
 
@@ -208,15 +212,16 @@
           </div>
 
           <div class="contact-right">
-            <form id="contact-form">
+            <form id="contact-form" novalidate>
               <label>Name</label>
               <input type="text" name="from_name" required>
+
               <label>Email</label>
               <input type="email" name="from_email" required>
+
               <label>Message</label>
               <textarea name="message" rows="6" required></textarea>
 
-              <!-- reCAPTCHA v2 -->
               <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
 
               <button type="submit">Send</button>
@@ -240,20 +245,45 @@
       });
     });
 
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const statusEl = document.getElementById('status-message');
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('status-message');
 
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // 清空旧提示
+      statusEl.innerHTML = "";
+
+      const name = form.from_name.value.trim();
+      const email = form.from_email.value.trim();
+      const message = form.message.value.trim();
+
+      // 自定义校验
+      if (!name) {
+        statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please enter your name</span>';
+        return;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please enter a valid email address</span>';
+        return;
+      }
+      if (!message) {
+        statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please enter your message</span>';
+        return;
+      }
+
+      // reCAPTCHA 校验
       const response = grecaptcha.getResponse();
       if (!response) {
         statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-exclamation-circle"></i> Please complete the CAPTCHA</span>';
         return;
       }
 
-      emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', this)
+      // 发送邮件
+      emailjs.sendForm('service_o5dzskj', 'template_0tu0mh2', form)
         .then(function() {
           statusEl.innerHTML = '<span class="status-message status-success"><i class="fas fa-check-circle"></i> Message sent successfully</span>';
-          document.getElementById('contact-form').reset();
+          form.reset();
           grecaptcha.reset();
         }, function(error) {
           statusEl.innerHTML = '<span class="status-message status-error"><i class="fas fa-times-circle"></i> Failed to send message</span>';
