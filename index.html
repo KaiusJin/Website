@@ -83,8 +83,9 @@
     .timeline {
       position: relative;
       flex: 1;
-      border-left: 2px solid #1E90FF;
+      border-left: 2px solid #fff; /* 默认白色竖线 */
       padding-left: 20px;
+      transition: border-color 0.3s;
     }
     .timeline-year {
       position: relative;
@@ -98,19 +99,24 @@
       top: 5px;
       width: 14px;
       height: 14px;
-      background-color: #fff;
+      background-color: #fff; /* 默认白色 */
       border-radius: 50%;
       border: 2px solid #1E1E1E;
       transition: background 0.3s;
     }
     .timeline-year:hover::before,
     .timeline-year.active::before {
-      background-color: #1E3A8A;
+      background-color: #1E90FF; /* 悬停/选中时蓝色 */
     }
     .timeline-year h3 {
       margin: 0;
       font-size: 20px;
-      color: #1E90FF;
+      color: #fff; /* 默认白色年份 */
+      transition: color 0.3s;
+    }
+    .timeline-year:hover h3,
+    .timeline-year.active h3 {
+      color: #1E90FF; /* 悬停/选中时蓝色年份 */
     }
     .timeline-year p {
       margin: 5px 0 0 0;
@@ -120,101 +126,23 @@
     .project-details {
       flex: 2;
     }
-
-    /* 📌 Contact 模块修复 */
-    .contact-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 40px;
+    .project-details h2 {
+      margin-top: 0;
     }
-    .contact-left {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      flex: 1;
-    }
-    .contact-left h2,
-    .contact-right h2 {
-      margin-bottom: 20px;
-      font-size: 22px;
-      border-bottom: 2px solid rgba(255,255,255,0.2);
-      padding-bottom: 8px;
-    }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-size: 18px;
-      white-space: nowrap;
-    }
-    .contact-item i {
-      font-size: 22px;
-      color: #fff;
-      width: 30px;
-      text-align: center;
-      transition: color 0.3s;
-    }
-    .contact-item a, .contact-item span {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .contact-item:hover i,
-    .contact-item:hover a,
-    .contact-item:hover span {
-      color: #1E90FF;
-    }
-    .contact-right {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .contact-right form {
-      display: flex;
-      flex-direction: column; /* ✅ 强制纵向布局 */
-      gap: 15px;
-      width: 100%;
-      max-width: 400px;
-    }
-    .contact-right input,
-    .contact-right textarea {
-      padding: 10px;
-      border: 1px solid #fff;
-      border-radius: 6px;
-      font-size: 16px;
-      background-color: rgba(30, 30, 30, 0.8);
-      color: #fff;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .contact-right input::placeholder,
-    .contact-right textarea::placeholder {
-      color: rgba(255,255,255,0.6);
-    }
-    .contact-right button {
-      padding: 10px;
-      border: 2px solid #fff;
-      background: transparent;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .contact-right button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #1E90FF;
-      border-color: #1E90FF;
-    }
-
     @media (max-width: 768px) {
-      .timeline-container, .contact-container {
+      .timeline-container {
         flex-direction: column;
       }
-      .contact-right form {
-        max-width: 100%;
+      .timeline {
+        border-left: none;
+        border-top: 2px solid #fff;
+        padding-left: 0;
+        padding-top: 20px;
+      }
+      .timeline-year::before {
+        left: auto;
+        top: -29px;
+        right: auto;
       }
     }
   </style>
@@ -233,7 +161,7 @@
         <p>
           I am a Computer Science student at the University of Waterloo, passionate about algorithms and project development.  
           <br>
-          <strong>This is modification #18</strong>
+          <strong>This is modification #19</strong>
         </p>
       </section>
 
@@ -247,7 +175,7 @@
             </div>
             <div class="timeline-year" data-project="b">
               <h3>2025</h3>
-              <p>Project B</p>
+              <p>AI and ML with Python</p>
             </div>
             <div class="timeline-year" data-project="a">
               <h3>2024</h3>
@@ -304,6 +232,36 @@
         sections.forEach(s => s.classList.remove('active'));
         link.classList.add('active');
         document.getElementById(link.dataset.page).classList.add('active');
+      });
+    });
+
+    // 点击时间轴事件
+    const timelineItems = document.querySelectorAll('.timeline-year');
+    const projectDetails = document.getElementById('project-details');
+
+    const projects = {
+      a: `<h2>Project A</h2><p>Details for Project A (2024) will go here.</p>`,
+      b: `
+        <h2>AI and ML with Python</h2>
+        <p><strong>Jul 2024 - Aug 2024</strong></p>
+        <p><em>Circuit Stream in Partnership with University of Toronto School of Continuing Studies</em></p>
+        <ul>
+          <li>Developed a Discord server bot using PyCharm, integrating OpenWeather API to deliver real-time weather updates.</li>
+          <li>Implemented asynchronous programming techniques for efficient task handling and improved bot responsiveness.</li>
+          <li>Applied AI/ML concepts learned through coursework to optimize code structure and logic design.</li>
+          <li>Utilized Python development tools in PyCharm for debugging, version control, and workflow optimization.</li>
+        </ul>
+        <p><strong>Skills:</strong> Jupyter · Python · API · Algorithms · Machine Learning · Discord API · Artificial Intelligence · PyCharm</p>
+      `,
+      c: `<h2>Project C</h2><p>Details for Project C (2026) will go here.</p>`
+    };
+
+    timelineItems.forEach(item => {
+      item.addEventListener('click', () => {
+        timelineItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        const projectKey = item.getAttribute('data-project');
+        projectDetails.innerHTML = projects[projectKey];
       });
     });
   </script>
