@@ -7,19 +7,18 @@
   <!-- Font Awesome 图标库 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
     body {
+      margin: 0;
+      height: 100%;
       background-color: #1E1E1E;
-      background-image: url('./'); /* 可以换成背景图 */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: sans-serif;
+      color: #fff;
     }
     .glass {
       position: absolute;
@@ -34,7 +33,6 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
     nav {
       display: flex;
@@ -52,29 +50,23 @@
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #1E90FF; /* 悬停时深蓝色 */
+      color: #1E90FF;
     }
     nav a.active {
-      color: #1E90FF; /* 当前页面高亮为深蓝色 */
+      color: #1E90FF;
     }
     .content {
       flex: 1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      font-family: sans-serif;
-      color: #fff;
       padding: 40px;
       text-align: left;
     }
     section {
-      display: none; /* 默认隐藏 */
-      width: 100%;
+      display: none;
     }
     section.active {
-      display: block; /* 激活的显示 */
+      display: block;
     }
-    /* Contact 页面样式 */
+    /* Contact 样式 */
     .contact-container {
       display: flex;
       flex-direction: column;
@@ -90,7 +82,7 @@
     }
     .contact-item i {
       font-size: 22px;
-      color: #fff; /* 默认白色 */
+      color: #fff;
       width: 30px;
       text-align: center;
       transition: color 0.3s;
@@ -100,11 +92,25 @@
       text-decoration: none;
       transition: color 0.3s;
     }
-    /* 悬停变深蓝 */
     .contact-item:hover i,
     .contact-item:hover a,
     .contact-item:hover span {
       color: #1E90FF;
+    }
+    /* Download CV 按钮 */
+    .download-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #1E90FF;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .download-btn:hover {
+      background: #0066CC;
     }
   </style>
 </head>
@@ -121,7 +127,11 @@
     <div class="content">
       <section id="about" class="active">
         <h1>欢迎来到我的个人网站</h1>
-        <p>这里是 About Me 的介绍内容。1</p>
+        <p>
+          我是滑铁卢大学计算机科学专业的学生，热爱算法与项目开发。  
+          <br>
+          <strong>这是第 1 次修改</strong>
+        </p>
       </section>
 
       <section id="project">
@@ -129,30 +139,29 @@
         <p>这里可以放你的项目列表，比如在线考试系统、个人网站、RateMyProfessor 应用等。</p>
       </section>
 
-     <section id="contact">
-  <h2>联系方式</h2>
-  <div class="contact-container">
-    <div class="contact-item">
-      <i class="fas fa-phone"></i>
-      <span>+1 (123) 456-7890</span> <!-- 这里可以换成你的真实手机号 -->
-    </div>
-    <div class="contact-item">
-      <i class="fas fa-envelope"></i>
-      <a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a>
-    </div>
-    <div class="contact-item">
-      <i class="fab fa-linkedin"></i>
-      <a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a>
-    </div>
-    <div class="contact-item">
-      <i class="fab fa-github"></i>
-      <a href="https://github.com/KaiusJin" target="_blank">GitHub</a>
-    </div>
-  </div>
-</section>
-
+      <section id="contact">
+        <h2>联系方式</h2>
+        <div class="contact-container">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+1 (123) 456-7890</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">LinkedIn</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/KaiusJin" target="_blank">GitHub</a>
           </div>
         </div>
+
+        <!-- Download CV 按钮 -->
+        <a href="cv.pdf" download class="download-btn">📄 Download CV</a>
       </section>
     </div>
   </div>
@@ -164,11 +173,9 @@
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        // 去掉所有 active
         navLinks.forEach(l => l.classList.remove('active'));
         sections.forEach(s => s.classList.remove('active'));
 
-        // 激活当前
         link.classList.add('active');
         document.getElementById(link.dataset.page).classList.add('active');
       });
