@@ -51,8 +51,11 @@
       cursor: pointer;
       transition: color 0.3s;
     }
-    nav a:hover, nav a.active {
-      color: #4CAF50;
+    nav a:hover {
+      color: #1E90FF; /* 悬停时深蓝色 */
+    }
+    nav a.active {
+      color: #1E90FF; /* 当前页面高亮为深蓝色 */
     }
     .content {
       flex: 1;
@@ -92,16 +95,16 @@
       text-align: center;
       transition: color 0.3s;
     }
-    .contact-item.active i {
-      color: #1E90FF; /* 点击后深蓝色 */
-    }
     .contact-item a, .contact-item span {
       color: #fff;
       text-decoration: none;
+      transition: color 0.3s;
     }
-    .contact-item a:hover {
-      text-decoration: underline;
-      color: #4CAF50;
+    /* 悬停变深蓝 */
+    .contact-item:hover i,
+    .contact-item:hover a,
+    .contact-item:hover span {
+      color: #1E90FF;
     }
   </style>
 </head>
@@ -157,19 +160,13 @@
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
+        // 去掉所有 active
         navLinks.forEach(l => l.classList.remove('active'));
         sections.forEach(s => s.classList.remove('active'));
+
+        // 激活当前
         link.classList.add('active');
         document.getElementById(link.dataset.page).classList.add('active');
-      });
-    });
-
-    // Contact 图标点击变色逻辑（单选高亮）
-    const contactItems = document.querySelectorAll('.contact-item');
-    contactItems.forEach(item => {
-      item.addEventListener('click', () => {
-        contactItems.forEach(i => i.classList.remove('active')); // 单选模式
-        item.classList.add('active');
       });
     });
   </script>
