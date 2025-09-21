@@ -79,20 +79,23 @@
 
     /* -------- Projects Timeline -------- */
     #project {
-    padding: 20px;
-    max-height: 70vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    padding-right: 15px;     /* ✅ 给右边留出空间 */
-    }
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 
-    .timeline-container {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      margin-left: 80px; /* 让年份不被遮挡 */
-    }
+  width: 100%;       /* ✅ 让 project 占满玻璃容器 */
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 80px;
+  padding-right: 15px;  /* ✅ 内容和滚动条保持间距 */
+}
+
     .timeline-line {
       position: absolute;
       left: -40px;
