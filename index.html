@@ -290,6 +290,92 @@
     .timeline-item:hover .project-card {
       transform: translateX(8px);
     }
+    /* -------- Activity Section -------- */
+#activity {
+  padding: 20px;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.activity-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 191, 255, 0.4);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.activity-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 191, 255, 0.6);
+}
+
+/* 上方图片 */
+.activity-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* 内容部分 */
+.activity-content {
+  padding: 15px;
+}
+
+.activity-content h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1E90FF;
+}
+
+.activity-date {
+  font-size: 14px;
+  color: #bbb;
+  margin: 5px 0 10px;
+}
+
+.activity-content p {
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.activity-content ul {
+  margin: 0 0 10px 20px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* 标签 */
+.activity-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: rgba(30,144,255,0.15);
+  border: 1px solid rgba(30,144,255,0.5);
+  color: #1E90FF;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.tag:hover {
+  background: #1E90FF;
+  color: #fff;
+}
+
 
     /* -------- Contact Section -------- */
     #contact {
@@ -574,6 +660,45 @@ body {
   <p>Scoring in the top 25% of all competitors</p>
 </div>
 
+</section>
+
+      <!-- Activity -->
+<section id="activity">
+  <h1>Activities</h1>
+  <div class="activity-grid">
+
+    <!-- Activity Card -->
+    <div class="activity-card">
+      <!-- Image -->
+      <img src="robot.jpg" alt="Robotics Development" class="activity-img">
+
+      <!-- Content -->
+      <div class="activity-content">
+        <h3>🤖 Robotics Competition Development</h3>
+        <p class="activity-date"><i class="fas fa-calendar-alt"></i> 2024</p>
+        <p>
+          Developed combat and motion control modules using programming languages, 
+          connected to a remote controller via Bluetooth for remote operation, 
+          and assembled the hardware to build the robot.
+        </p>
+        <ul>
+          <li>Implemented control logic with C++ and Python</li>
+          <li>Developed motion control and combat modules</li>
+          <li>Established Bluetooth communication with remote controller</li>
+          <li>Assembled and tested hardware components</li>
+        </ul>
+
+        <!-- Tags -->
+        <div class="activity-tags">
+          <span class="tag">Robotics</span>
+          <span class="tag">Bluetooth</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 
