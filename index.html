@@ -386,14 +386,21 @@
   padding: 12px 0;
   color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
   margin-top: 20px;
+  width: 100%;
+  position: relative;  /* 默认跟随文档流 */
 }
 
-footer p {
-  margin: 0;
+/* 如果你希望它始终固定在页面底部（即使内容很少时也在最下方），用这个 */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+.glass {
+  flex: 1;  /* 占据剩余高度，把 footer 挤到最下面 */
+}
   </style>
 </head>
 <body>
