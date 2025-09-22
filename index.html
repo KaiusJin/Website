@@ -168,24 +168,22 @@
 }
 
 
-    .glass {
-      margin: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 35px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      flex-direction: column;
-      width: calc(100% - 40px);
-      max-width: 1200px;
-      height: 90vh;          /* 固定高度为 90% 屏幕高度 */
-      min-height: auto;      /* 移除最小高度限制 */
-      overflow-y: auto;      /* 内容超出时允许垂直滚动 */
-      overflow-x: hidden;    /* 避免横向滚动 */
-      box-sizing: border-box;
-    }
+.glass {
+  margin: 20px auto 10px auto;  /* 上 20px, 左右 auto, 下 10px */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 35px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 40px);
+  max-width: 1200px;
+  height: 90vh;
+  box-sizing: border-box;
+}
+
     nav {
       display: flex;
       justify-content: center;
