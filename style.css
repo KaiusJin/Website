@@ -1,0 +1,203 @@
+/* --- 1. 背景与全局设定 --- */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #020024, #051937, #004d7a, #008793, #1a2a6c);
+    background-size: 400% 400%;
+    animation: gradientBG 30s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bg-blob {
+    position: fixed; width: 600px; height: 600px; border-radius: 50%;
+    z-index: -1; filter: blur(120px); opacity: 0.15;
+}
+.blob-1 { top: -200px; left: -100px; background: #00d2ff; }
+.blob-2 { bottom: -200px; right: -100px; background: #3a7bd5; }
+
+/* --- 2. 核心逻辑：显示与隐藏 --- */
+section { display: none; height: 100%; animation: fadeIn 0.6s ease forwards; }
+section.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 3. 大容器与滚动条 --- */
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    width: 95%; max-width: 1400px; height: 85vh;
+    display: flex; flex-direction: column;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+}
+
+/* 自适应透明滚动条 */
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+.content::-webkit-scrollbar-thumb:hover { background: rgba(0, 210, 255, 0.3); }
+
+
+/* 找到这个选择器 */
+.card-bullets li {
+    /* 将原本的 margin-bottom 从 10px 增加到 18px 或更高 */
+    margin-bottom: 18px; 
+    
+    /* 保持其他属性不变 */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 最后一个子弹点不需要下边距，防止卡片底部留白过多 */
+.card-bullets li:last-child {
+    margin-bottom: 0;
+}
+
+/* --- 4. 导航与文字 --- */
+nav { display: flex; justify-content: center; padding: 25px; gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+nav a { color: rgba(255,255,255,0.5); text-decoration: none; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
+nav a.active, nav a:hover { color: #00d2ff; text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+
+.content { flex: 1; padding: 40px 60px; overflow-y: auto; scrollbar-gutter: stable; }
+.gradient-text { background: linear-gradient(90deg, #fff, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3.5rem; font-weight: 800; margin-bottom: 35px; }
+
+/* --- 5. 卡片与网格系统 --- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; }
+.info-card, .award-card { background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; transition: 0.3s; display: flex; flex-direction: column; }
+.info-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.05); border-color: #00d2ff; }
+
+/* 项目卡片内的标题加大 */
+.info-card h3 { font-size: 1.8rem; color: #fff; margin: 0 0 15px 0; font-weight: 700; }
+.info-card h2 { color: #00d2ff; margin-bottom: 15px; font-size: 1.4rem; }
+.year-badge { background: #00d2ff; color: #fff; padding: 3px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 800; }
+
+
+/* --- Awards 专属回归样式 --- */
+.award-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* 图标在上，内容在下 */
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.award-card:hover {
+    transform: translateY(-8px);
+    border-color: #00d2ff; /* 悬浮时变蓝 */
+}
+
+/* 图标大小 */
+.award-icon {
+    font-size: 2.5rem;
+    color: #00d2ff;
+}
+
+/* 标题与奖金对齐 */
+.award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.award-header h3 {
+    font-size: 1.7rem; /* 大号项目名 */
+    color: #fff;
+    margin: 0;
+    font-weight: 700;
+}
+
+/* 奖金标签 */
+.award-tag {
+    background: #00d2ff;
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+/* 底部全名描述 */
+.award-full-name {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    margin: 0;
+}
+/* --- 修复点：Technical Skills 标签样式 --- */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+.skill-tag {
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: #00d2ff;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.skill-tag:hover {
+    background: rgba(0, 210, 255, 0.25);
+    transform: translateY(-3px);
+}
+
+/* GitHub 按钮 */
+.card-actions { margin-top: auto; padding-top: 20px; }
+.github-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; text-decoration: none; border-radius: 12px; font-weight: 600; transition: 0.3s;
+}
+.github-btn:hover { background: #00d2ff; color: #051937; border-color: #00d2ff; transform: scale(1.05); }
+
+/* --- 6. Contact 页面 (加大左侧字体) --- */
+.contact-container { display: flex; gap: 60px; }
+.contact-left { flex: 1; display: flex; flex-direction: column; gap: 40px; }
+.contact-big-item { display: flex; align-items: center; gap: 20px; }
+.contact-big-item i { font-size: 2.8rem; color: #00d2ff; width: 50px; text-align: center; }
+.contact-text span { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+.contact-text a { font-size: 1.8rem; font-weight: 800; color: #fff; text-decoration: none; transition: 0.3s; }
+.contact-text a:hover { color: #00d2ff; }
+
+.contact-right { flex: 1.5; }
+.contact-right form { display: flex; flex-direction: column; gap: 15px; }
+.contact-right input, .contact-right textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 15px; color: #fff; font-size: 1.1rem; }
+
+/* 按钮文字白色 */
+.contact-right button { background: #0099cc; color: #ffffff; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
+.contact-right button:hover { background: #00d2ff; box-shadow: 0 0 20px rgba(0,210,255,0.5); transform: scale(1.02); }
+
+footer { padding: 20px; color: rgba(255,255,255,0.3); font-size: 0.9rem; text-align: center; }
+
+/* 响应式 */
+@media (max-width: 1000px) { .contact-container { flex-direction: column; } .card-grid { grid-template-columns: 1fr; } .contact-text a { font-size: 1.4rem; } }

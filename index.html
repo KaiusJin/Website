@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kaius Jin | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        (function(){
+            emailjs.init("Weh_j8K9Bgk4BrZFl");
+        })();
+    </script>
+</head>
+<body>
+<div class="bg-blob blob-1"></div>
+<div class="bg-blob blob-2"></div>
+
+<div class="glass">
+    <nav>
+        <a class="active" data-page="about">About Me</a>
+        <a data-page="project">Project</a>
+        <a data-page="experience">Experience</a>
+        <a data-page="awards">Awards</a>
+        <a data-page="activity">Activity</a>
+        <a data-page="contact">Contact</a>
+    </nav>
+
+    <div class="content">
+        <section id="about" class="active">
+            <h1 class="gradient-text">Kaius Jin</h1>
+            <div class="card-grid">
+                <div class="info-card">
+                    <h2><i class="fas fa-user-graduate"></i> Profile</h2>
+                    <p>I am a <strong>1B Computer Science Co-op student</strong> at the <strong>University of Waterloo</strong>. Studying from 2025 to 2030.</p>
+                </div>
+                <div class="info-card">
+                    <h2><i class="fas fa-laptop-code"></i> Technical Skills</h2>
+                    <div class="skills-list">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Racket/Scheme</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">LaTeX</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h2><i class="fas fa-school"></i> Education</h2>
+                    <ul>
+                        <li>Bachelor of Computer Science</li>
+                        <li>University of Waterloo</li>
+                        <li>Honours Co-op (SEQ4)</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h2><i class="fas fa-users"></i> Involvement</h2>
+                    <ul>
+                        <li>Computer Science Club</li>
+                        <li>Data Science Club</li>
+                        <li>Deception Board Club</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+<section id="project">
+    <h1 class="gradient-text">Projects</h1>
+    <div class="card-grid">
+        
+        <div class="info-card project-card">
+            <div class="card-header">
+                <h3>UWaterloo Workload Calculator</h3>
+                <span class="year-badge">Jan 2026</span>
+            </div>
+            <ul class="card-bullets">
+                <li>Developed a specialized full-stack analyzer to quantify academic and physical workload for University of Waterloo students by parsing Quest schedule data.</li>
+                <li>Engineered a high-precision campus navigation engine using NetworkX (Dijkstra's Algorithm) and GeoJSON data to calculate inter-building commute times.</li>
+                <li>Implemented a multi-source data fusion pipeline integrating GraphQL to scrape UWFlow course/professor ratings and cross-referencing schedule timestamps (12h/24h formats).</li>
+            </ul>
+            <div class="card-actions">
+                <a href="https://github.com/KaiusJin/UWaterlooWorkloadCalculator" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+
+        <div class="info-card project-card">
+            <div class="card-header">
+                <h3>Guess The Disease</h3>
+                <span class="year-badge">Oct 2025</span>
+            </div>
+            <ul class="card-bullets">
+                <li>Developed a full-stack platform using Gemini to dynamically synthesize patient cases via optimized Prompt Engineering.</li>
+                <li>Engineered a RESTful backend to manage stateful AI sessions and asynchronous API calls, ensuring real-time diagnostic simulation.</li>
+            </ul>
+            <div class="card-actions">
+                <a href="https://github.com/KaiusJin/Guess-The-Disease" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+
+        <div class="info-card project-card">
+            <div class="card-header">
+                <h3>Remember Me</h3>
+                <span class="year-badge">Sep 2025</span>
+            </div>
+            <ul class="card-bullets">
+                <li>Developed an IoT-based patient care device utilizing USB-interfaced microcontrollers, sensors, and actuators (LED/Buzzer) for real-time medication reminders.</li>
+                <li>Built a web dashboard with interactive timelines to visualize patient health trends.</li>
+                <li>Integrated Gemini to analyze task completion patterns and generate personalized health insights based on historical behavioral data.</li>
+            </ul>
+            <div class="card-actions">
+                <a href="https://github.com/Phyvlik/Remember-Me-HackGT" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+
+        <div class="info-card project-card">
+            <div class="card-header">
+                <h3>Discord Agent with LLM Integration</h3>
+                <span class="year-badge">Jul 2024 – Aug 2024</span>
+            </div>
+            <ul class="card-bullets">
+                <li>Developed an asynchronous Discord bot integrating GPT-3 API for natural language processing and real-time interactive conversations.</li>
+                <li>Integrated Open Weather API and custom utility modules to deliver dynamic external data.</li>
+                <li>Utilized Python Asyncio (async/await) to handle high-concurrency events and multi-user requests, ensuring low-latency responses.</li>
+            </ul>
+            <div class="card-actions">
+                <a href="https://github.com/KaiusJin" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+
+        <div class="info-card project-card">
+            <div class="card-header">
+                <h3>Competitive Robotics Project</h3>
+                <span class="year-badge">Jun 2024 – Aug 2024</span>
+            </div>
+            <ul class="card-bullets">
+                <li>Engineered motion control and combat modules using C++, optimizing PID control algorithms for precise and responsive robot maneuvers.</li>
+                <li>Developed a Bluetooth communication protocol to ensure low-latency remote control and reliable data transmission between controller and robot.</li>
+                <li>Integrated hardware components with low-level C++ firmware, performing rigorous debugging to ensure real-time system stability.</li>
+            </ul>
+            <div class="card-actions">
+                <a href="https://github.com/KaiusJin" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+
+        <div class="info-card project-card">
+            <div class="card-header">
+                <h3>Crowd Recognition & Density Estimation System</h3>
+                <span class="year-badge">Nov 2023 – Dec 2023</span>
+            </div>
+            <ul class="card-bullets">
+                <li>Developed a computer vision system for real-time crowd detection and counting using OpenCV, supporting both live video streams and offline media processing.</li>
+                <li>Implemented Gaussian filtering and morphological operations to perform image de-noising and background subtraction, enhancing feature extraction accuracy.</li>
+                <li>Optimized frame-by-frame processing logic to ensure high-throughput analysis for low-latency crowd monitoring applications.</li>
+                <li>Utilized NumPy for efficient matrix operations on pixel data, facilitating rapid density map generation and population estimation.</li>
+            </ul>
+            <div class="card-actions">
+                <a href="https://github.com/KaiusJin" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub Repo
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="experience">
+    <h1 class="gradient-text">Work Experience</h1>
+    <div class="card-grid">
+        
+        <div class="info-card">
+            <div class="card-header">
+                <h3>Software Engineering Intern</h3>
+                <span class="year-badge">Jul 2025 – Dec 2025</span>
+            </div>
+            <p><strong>Tianjin Jinrui Technology Investment Development Co., Ltd. (Remote)</strong></p>
+            <ul class="card-bullets">
+                <li>Designed and implemented a relational database schema in MySQL to support an internal investment management system, applying normalization to reduce data redundancy and improve data consistency.</li>
+                <li>Developed a C++ backend service to interact with the MySQL database via MySQL Connector, implementing efficient data retrieval logic to process 10k+ daily transactions.</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">
+                <h3>Data Analyst Intern</h3>
+                <span class="year-badge">Apr 2025 – Jun 2025</span>
+            </div>
+            <p><strong>Tianjin Jinrui Technology Investment Development Co., Ltd. (Tianjin, China)</strong></p>
+            <ul class="card-bullets">
+                <li>Performed Exploratory Data Analysis on multi-source housing datasets, applying regularized regression to identify key market drivers and predict sales trends with high precision.</li>
+                <li>Developed robust data preprocessing scripts using Python (Pandas) to automate the cleaning, transformation, and feature engineering of multi-source datasets.</li>
+                <li>Designed interactive data visualizations using Seaborn and Qt, translating complex market patterns into interpretable insights to support decision-making.</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<section id="awards">
+    <h1 class="gradient-text">Honors & Awards</h1>
+    <div class="card-grid">
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-medal"></i></div>
+            <div class="award-content">
+                <div class="award-header">
+                    <h3>Lan Wong Chu Entrance Scholarship</h3>
+                    <span class="award-tag">$2,000</span>
+                </div>
+                <p class="award-full-name">University of Waterloo · 2025</p>
+            </div>
+        </div>
+
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-trophy"></i></div>
+            <div class="award-content">
+                <div class="award-header">
+                    <h3>President’s Scholarship of Distinction</h3>
+                    <span class="award-tag">$2,500</span>
+                </div>
+                <p class="award-full-name">University of Waterloo · 2025</p>
+            </div>
+        </div>
+        <div class="award-card">
+            <div class="award-icon"><i class="fas fa-trophy"></i></div>
+            <div class="award-content">
+                <div class="award-header">
+                    <h3>Euclid Distinction</h3>
+                    <span class="award-tag">TOP 25%</span>
+                </div>
+                <p class="award-full-name">University of Waterloo · 2024</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="activity">
+            <h1 class="gradient-text">Activities</h1>
+            <div class="card-grid">
+                <div class="info-card">
+                    <i class="fas fa-code-branch activity-icon"></i>
+                    <h3>Hack The Valley</h3>
+                    <p>Developed "Guess The Disease", a gamified application built with Python to enhance medical awareness.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-robot activity-icon"></i>
+                    <h3>Robotics Competition</h3>
+                    <p>Engineered combat modules and motion control systems using Python and Bluetooth communication.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h1 class="gradient-text">Let's Connect</h1>
+            <div class="contact-container">
+                <div class="contact-left">
+                    <div class="contact-big-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-text">
+                            <span>Email</span>
+                            <a href="mailto:kaius.jin@outlook.com">kaius.jin@outlook.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-big-item">
+                        <i class="fab fa-github"></i>
+                        <div class="contact-text">
+                            <span>GitHub</span>
+                            <a href="https://github.com/KaiusJin" target="_blank">github.com/KaiusJin</a>
+                        </div>
+                    </div>
+                    <div class="contact-big-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div class="contact-text">
+                            <span>LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/kaixuan-jin/" target="_blank">in/kaixuan-jin</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form id="contact-form">
+                        <input type="text" name="from_name" placeholder="Name" required>
+                        <input type="email" name="from_email" placeholder="Email" required>
+                        <textarea name="message" placeholder="Message" rows="5" required></textarea>
+                        <div class="g-recaptcha" data-sitekey="6LdjJNArAAAAAAc9QzBoXlZItuKErs9P2pjqF5Pl"></div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Kaius Jin. Built with ❤️ at Waterloo.</p>
+</footer>
+
+<script>
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const target = link.getAttribute('data-page');
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(target).classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
